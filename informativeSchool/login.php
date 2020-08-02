@@ -1,19 +1,4 @@
-<?php
 
-include './service/loginService.php';
-if (isset($_POST["nombreUsuario"]) && isset($_POST["clave"])) {
-    echo "hola";
-    $loginService = new LoginService();
-    $row = $loginService->login($_POST["nombreUsuario"], $_POST["clave"]);
-    if (isset($row)) {
-        session_start();
-        $_SESSION["user"] = $row;
-        header('Location: ../intranet/home_intranet.php');
-    }
-}
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -78,7 +63,25 @@ if (isset($_POST["nombreUsuario"]) && isset($_POST["clave"])) {
                                             <form action="login.php" method="post" id="login-form">
                                                 <h3 style="text-align: center;">BIENVENIDO! INICIE SESIÓN AQUÍ ABAJO
                                                 </h3>
+                                                <?php
 
+include './service/loginService.php';
+if (isset($_POST["nombreUsuario"]) && isset($_POST["clave"])) {
+    $loginService = new LoginService();
+    $row = $loginService->login($_POST["nombreUsuario"], $_POST["clave"]);
+    if (isset($row)) {
+        session_start();
+        $_SESSION["user"] = $row;
+        header('Location: ../intranet/home_intranet.php');
+    }
+    else
+    	{
+            echo "<div style='color:red'>Usuario o contraseña no válido </div>";
+        }
+}
+
+
+?>
                                                 <h4 class="text-center">Nombre de usuario:</h4>
                                                 <div class="form-group">
 
