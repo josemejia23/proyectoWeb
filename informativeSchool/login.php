@@ -19,7 +19,7 @@ if (isset($_POST["nombreUsuario"]) && isset($_POST["clave"])) {
 <html lang="es">
 
 <head>
-    <title>ACERCA DE NOSOTROS|GALÁPAGOS ACADEMY</title>
+    <title>LOGIN|GALÁPAGOS ACADEMY</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="../images/Logo.png" type="image/png" />
@@ -70,7 +70,7 @@ if (isset($_POST["nombreUsuario"]) && isset($_POST["clave"])) {
                             <div class="container">
                                 <div class="row d-flex align-items-stretch no-gutters">
                                     <div class="col-md-16 p-8 p-md-7 order-md-last bg-light">
-                                        <form action="#">
+                                       
                                             <div class="text-center">
                                                 <img src="../images/Logo.png" style="width: 200px;">
                                             </div>
