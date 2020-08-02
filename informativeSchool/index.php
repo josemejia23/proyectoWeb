@@ -17,8 +17,7 @@ $accion = "Agregar";
 $codCliente = "";
 $clienteService = new ClienteService();
 $result = $clienteService->findAll();
-$productService = new ProductService();
-$result = $productService->findAll();
+
 
 
 if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {

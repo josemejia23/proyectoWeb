@@ -2,12 +2,12 @@
 include 'mainService.php';
 class LoginService extends MainService
 {
-    function login($username, $password)
+    function login($nombreUsuario, $clave)
     {
-        $result = $this->conex->query("SELECT * FROM USUARIO WHERE USERNAME='$username'");
+        $result = $this->conex->query("SELECT * FROM USUARIO WHERE NOMBRE_USUARIO='$nombreUsuario'");
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            if ($row['PASSWORD'] == $password) {
+            if ($row['CLAVE'] == $clave) {
                 return $row;
             }
         } else {
