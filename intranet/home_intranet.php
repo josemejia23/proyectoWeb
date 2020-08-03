@@ -125,7 +125,8 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
             <img src="../images/Logo.png" class="img-circle" alt="logo">
           </div>
           <div class="info">
-          <span><?php echo $_SESSION['user']['NOMBRE'] ?></span>
+            <a href="#" class="d-block"><?php echo $_SESSION['user']['NOMBRE_USUARIO'] ?></a>
+           
           </div>
         </div>
 
