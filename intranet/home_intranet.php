@@ -1,14 +1,5 @@
 <?php
-include './services/alumnoService.php';
-
 session_start();
-if (!isset($_SESSION['USER'])) {
-  header('Location: ../Login/login.php');
-}
-
-$alumnoService = new AlumnoService();
-$result2 = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
-$result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
 
 ?>
 
@@ -71,10 +62,8 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
             <div class="dropdown-divider"></div>
-            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesión</a>
-            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cambiar Contraseña</a>
+            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
           </div>
-          
         </li>
 
       </ul>
@@ -94,7 +83,7 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
           <div class="image">
             <img src="../images/Logo.png" class="img-circle" alt="logo">
           </div>
-         <<div class="info">
+         <div class="info">
             <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_USUARIO'] ?></a>
            
           </div> -->
@@ -118,53 +107,9 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
             </li>
 
 
-           <!--  <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Gestión de Usuarios
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Personal</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Alumnos</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./aspirants.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Aspirantes</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li> -->
-
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo '            <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -174,13 +119,10 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-
                 </li>
                 <li class="nav-item">
-
                 </li>
                 <li class="nav-item">
-
                 </li>
                 <li class="nav-item">
                   <a href="./user.html" class="nav-link">
@@ -188,60 +130,33 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                     <p>Personal</p>
                   </a>
                 </li>
-
                 <li class="nav-item">
                   <a href="./user.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
                 </li>
-
                 <li class="nav-item">
                   <a href="./aspirants.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Aspirantes</p>
                   </a>
                 </li>
-
               </ul>
             </li>';
                 } ?>
 
 
 
-            <?php if($_SESSION["USER"]['COD_ROL']=='4') { 
-             
-              
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
                 echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
-                Asignaturas
+                Gestión de Privilegios
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./privileges.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Asignaturas</p>
-                  </a>
-                </li>
-
-              </ul>
-                </li>';
-                } ?>
-           <!--  <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  
-                  Gestión de Privilegios
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
@@ -250,42 +165,11 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                     <p>Privilegios</p>
                   </a>
                 </li>
-
               </ul>
-            </li <li class=> -->
-<!-- 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Infraestructura
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./sede.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Sedes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./edifice.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Edificios</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./classroom.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Aulas</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
-
+                </li>';
+                } ?>
+         
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-             
                 echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -315,13 +199,11 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                   </li>
                 </ul>
               </li>
-  ';
+                ';
                 } ?>
             
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo ' <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -350,14 +232,16 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                   </li>
                 </ul>
               </li>
-  ';
+              ';
                 } ?>
             
 
 
             <?php if($_SESSION["USER"]['COD_ROL']=='4' || $_SESSION["USER"]['COD_ROL']=='5') { 
-             
-                echo ' <li class="nav-item has-treeview">
+              
+              
+                echo '<li class="nav-item has-treeview">
+                
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -366,6 +250,12 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="./attend.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asignaturas</p>
+                </a>
+              </li>
                   <li class="nav-item">
                     <a href="./attend.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
@@ -387,13 +277,11 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                 </ul>
               </li>
   
-  ';
+                  ';
                 } ?>
 
             
-<?php if($_SESSION["USER"]['COD_ROL']=='3') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+            <?php if($_SESSION["USER"]['COD_ROL']=='3') { 
                 echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -436,7 +324,7 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                 </ul>
               </li>
   
-  ';
+                ';
                 } ?>
             
 
@@ -444,9 +332,7 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
            
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo '  <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -476,18 +362,14 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                       <p>Asignación de Docentes</p>
                     </a>
                   </li>
-  
-  
                 </ul>
               </li>
-  ';
+                  ';
                 } ?>
           
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo ' <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -516,17 +398,12 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
                       <p>Reportes de Infraestructura</p>
                     </a>
                   </li>
-  
-  
-  
                 </ul>
               </li>
   ';
                 } ?>
             
             
-
-
           </ul>
         </nav>
 
@@ -542,9 +419,7 @@ $result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark"> <?php echo $_SESSION["USER"]['NOMBRE_ROL'];
-              ?></h1>
-             
+              <h1 class="m-0 text-dark"> <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_ROL'] ?></a></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
