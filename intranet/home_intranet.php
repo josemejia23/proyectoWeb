@@ -107,53 +107,9 @@ session_start();
             </li>
 
 
-           <!--  <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Gestión de Usuarios
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Personal</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Alumnos</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./aspirants.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Aspirantes</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li> -->
-
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo '            <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -198,9 +154,7 @@ session_start();
 
 
 
-            <?php if($_SESSION["USER"]['COD_ROL']=='4') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
                 echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -221,61 +175,8 @@ session_start();
               </ul>
                 </li>';
                 } ?>
-           <!--  <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  
-                  Gestión de Privilegios
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./privileges.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Privilegios</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li <li class=> -->
-<!-- 
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Infraestructura
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./sede.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Sedes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./edifice.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Edificios</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./classroom.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Aulas</p>
-                  </a>
-                </li>
-              </ul>
-            </li> -->
-
+         
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
                 echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -305,13 +206,11 @@ session_start();
                   </li>
                 </ul>
               </li>
-  ';
+                ';
                 } ?>
             
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo ' <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -340,15 +239,13 @@ session_start();
                   </li>
                 </ul>
               </li>
-  ';
+              ';
                 } ?>
             
 
 
             <?php if($_SESSION["USER"]['COD_ROL']=='4' || $_SESSION["USER"]['COD_ROL']=='5') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo ' <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -378,13 +275,11 @@ session_start();
                 </ul>
               </li>
   
-  ';
+                  ';
                 } ?>
 
             
-<?php if($_SESSION["USER"]['COD_ROL']=='3') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+            <?php if($_SESSION["USER"]['COD_ROL']=='3') { 
                 echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -427,7 +322,7 @@ session_start();
                 </ul>
               </li>
   
-  ';
+                ';
                 } ?>
             
 
@@ -435,9 +330,7 @@ session_start();
            
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo '  <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -467,18 +360,14 @@ session_start();
                       <p>Asignación de Docentes</p>
                     </a>
                   </li>
-  
-  
                 </ul>
               </li>
-  ';
+                  ';
                 } ?>
           
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
-                echo ' <li class="nav-item has-treeview">
+                echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -507,17 +396,12 @@ session_start();
                       <p>Reportes de Infraestructura</p>
                     </a>
                   </li>
-  
-  
-  
                 </ul>
               </li>
   ';
                 } ?>
             
             
-
-
           </ul>
         </nav>
 
