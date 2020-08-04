@@ -1,5 +1,14 @@
 <?php
+include './services/alumnoService.php';
+
 session_start();
+if (!isset($_SESSION['USER'])) {
+  header('Location: ../Login/login.php');
+}
+
+$alumnoService = new AlumnoService();
+$result2 = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
+$result = $alumnoService->findSubjet($_SESSION['USER']['COD_PERSONA']);
 
 ?>
 
@@ -62,8 +71,10 @@ session_start();
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
             <div class="dropdown-divider"></div>
-            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
+            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesión</a>
+            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cambiar Contraseña</a>
           </div>
+          
         </li>
 
       </ul>
@@ -83,8 +94,8 @@ session_start();
           <div class="image">
             <img src="../images/Logo.png" class="img-circle" alt="logo">
           </div>
-         <!--  <div class="info">
-            <a href="#" class="d-block"><?php echo $_SESSION['user']['NOMBRE_USUARIO'] ?></a>
+         <<div class="info">
+            <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_USUARIO'] ?></a>
            
           </div> -->
         </div>
@@ -100,7 +111,7 @@ session_start();
               <a href="calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
-                  Calendario
+                  Horario
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
@@ -199,13 +210,13 @@ session_start();
 
 
             <?php if($_SESSION["USER"]['COD_ROL']=='4') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+             
+              
                 echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
-                Gestión de Privilegios
+                Asignaturas
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -214,7 +225,7 @@ session_start();
                 <li class="nav-item">
                   <a href="./privileges.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Privilegios</p>
+                    <p>Asignaturas</p>
                   </a>
                 </li>
 
@@ -274,8 +285,7 @@ session_start();
             </li> -->
 
             <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+             
                 echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -346,8 +356,7 @@ session_start();
 
 
             <?php if($_SESSION["USER"]['COD_ROL']=='4' || $_SESSION["USER"]['COD_ROL']=='5') { 
-              echo $_SESSION["USER"]['COD_ROL'];
-              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+             
                 echo ' <li class="nav-item has-treeview">
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -533,7 +542,9 @@ session_start();
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Superusuario</h1>
+              <h1 class="m-0 text-dark"> <?php echo $_SESSION["USER"]['NOMBRE_ROL'];
+              ?></h1>
+             
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
