@@ -192,7 +192,7 @@ session_start();
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
+                    <a href="./Infraestructura/addAula.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
