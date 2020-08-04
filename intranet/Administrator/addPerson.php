@@ -174,13 +174,13 @@ if (isset($_GET['buscar'])) {
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
+                  <a href="./addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./user.html" class="nav-link">
+                  <a href="./addAlumn.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
