@@ -107,7 +107,7 @@ session_start();
             </li>
 
 
-            <li class="nav-item has-treeview">
+           <!--  <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -128,7 +128,14 @@ session_start();
                 <li class="nav-item">
                   <a href="./user.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Usuarios</p>
+                    <p>Personal</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="./user.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Alumnos</p>
                   </a>
                 </li>
 
@@ -140,7 +147,57 @@ session_start();
                 </li>
 
               </ul>
-            </li>
+            </li> -->
+
+
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo '            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Gestión de Usuarios
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+
+                </li>
+                <li class="nav-item">
+                  <a href="./user.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Personal</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="./user.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Alumnos</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="./aspirants.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Aspirantes</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>';
+                } ?>
+
+
+
             <?php if($_SESSION["USER"]['COD_ROL']=='4') { 
               echo $_SESSION["USER"]['COD_ROL'];
               echo $_SESSION["USER"]['NOMBRE_USUARIO'];
@@ -162,9 +219,6 @@ session_start();
                 </li>
 
               </ul>
-
-
-
                 </li>';
                 } ?>
            <!--  <li class="nav-item has-treeview">
@@ -188,7 +242,7 @@ session_start();
 
               </ul>
             </li <li class=> -->
-
+<!-- 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -217,149 +271,251 @@ session_start();
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
 
-            <li class="nav-item has-treeview">
-              <a href="./notes_info.html" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Información Educativa
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./attend.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Asistencias</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./notes_info.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Calificaciones</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./homework_info.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Tareas</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item has-treeview">
-              <a href="./notes.html" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Manager Académico
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./notes.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registrar Calificaciones
-                    </p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./attend_ges.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registrar Asistencias</p>
-                  </a>
-                </li>
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Infraestructura
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./sede.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sedes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./edifice.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Edificios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./classroom.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Aulas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+  ';
+                } ?>
             
-                <li class="nav-item">
-                  <a href="./homework.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registrar Tareas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./meets.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Reuniones  </p>
-                  </a>
-                </li>
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Infraestructura
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./sede.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sedes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./edifice.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Edificios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./classroom.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Aulas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+  ';
+                } ?>
+            
 
 
+            <?php if($_SESSION["USER"]['COD_ROL']=='4' || $_SESSION["USER"]['COD_ROL']=='5') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo ' <li class="nav-item has-treeview">
+                <a href="./notes_info.html" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Información Educativa
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./attend.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Asistencias</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./notes_info.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Calificaciones</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./homework_info.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Tareas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+  
+  ';
+                } ?>
 
-              </ul>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Gestión Institución
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./periodo.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Periodo</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./asignature.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Materias</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="./teacherAsignature.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Asignación de Docentes</p>
-                  </a>
-                </li>
-
-
-              </ul>
-            </li>
-
-
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Gestión de Reportes
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./report_student.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Reportes de Alumnos </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./report_teacher.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Reportes de Profesores</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./report_infraestructure.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Reportes de Infraestructura</p>
-                  </a>
-                </li>
+            
+<?php if($_SESSION["USER"]['COD_ROL']=='3') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo ' <li class="nav-item has-treeview">
+                <a href="./notes.html" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Manager Académico
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./notes.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registrar Calificaciones
+                      </p>
+                    </a>
+                  </li>
+  
+                  <li class="nav-item">
+                    <a href="./attend_ges.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registrar Asistencias</p>
+                    </a>
+                  </li>
+              
+                  <li class="nav-item">
+                    <a href="./homework.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registrar Tareas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./meets.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Reuniones  </p>
+                    </a>
+                  </li>
+  
+  
+  
+                </ul>
+              </li>
+  
+  ';
+                } ?>
+            
 
 
+           
 
-              </ul>
-            </li>
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo '  <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Gestión Institución
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  </li>
+                  <li class="nav-item">
+                    <a href="./periodo.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Periodo</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./asignature.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Materias</p>
+                    </a>
+                  </li>
+  
+                  <li class="nav-item">
+                    <a href="./teacherAsignature.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Asignación de Docentes</p>
+                    </a>
+                  </li>
+  
+  
+                </ul>
+              </li>
+  ';
+                } ?>
+          
+
+            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Gestión de Reportes
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  </li>
+                  <li class="nav-item">
+                    <a href="./report_student.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Reportes de Alumnos </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./report_teacher.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Reportes de Profesores</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./report_infraestructure.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Reportes de Infraestructura</p>
+                    </a>
+                  </li>
+  
+  
+  
+                </ul>
+              </li>
+  ';
+                } ?>
+            
+            
 
 
           </ul>
