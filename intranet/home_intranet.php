@@ -1,50 +1,9 @@
 <?php
-include '../informativeSchool/service/clienteService.php';
-
-$connection = new Connection();
-$conex = $connection->getConnection();
 session_start();
-if (!isset($_SESSION['user'])) {
-    header('location: ../informativeSchool/login.php');
-}
-
-$where = "";
-$cedula = "";
-$nombre = "";
-$fechaNacimiento = "";
-$accion = "Agregar";
-$codCliente = "";
-$clienteService = new ClienteService();
-$result = $clienteService->findAll();
-
-
-
-if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
-    $clienteService->insert($_POST["cedula"], $_POST["nombre"], $_POST["fechaNacimiento"]);
-} else if (isset($_POST["accion"]) && ($_POST["accion"] == "Modificar")) {
-    $clienteService->update($_POST["cedula"], $_POST["nombre"], $_POST["fechaNacimiento"], $_POST["codCliente"]);
-} else if (isset($_GET["update"])) {
-    $cliente = $clienteService->findByPK($_GET["update"]);
-    if ($cliente != NULL) {
-        $codCliente = $cliente["cod_cliente"];
-        $cedula = $cliente["cedula"];
-        $nombre = $cliente["nombre"];
-        $fechaNacimiento = $cliente["fecha_nacimiento"];
-        $accion = "Modificar";
-    }
-} else if (isset($_POST["eliCodigo"])) {
-    $clienteService->delete($_POST["eliCodigo"]);
-} else if (isset($_POST['buscar'])) {
-
-    if (isset($_POST['xnombre'])) {
-        $nombre = $_POST['xnombre'];
-        $result = $conex->query("SELECT * FROM CLIENTE where nombre like '" . $nombre . "%'");
-    }
-}
-
-
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -103,7 +62,7 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
             <div class="dropdown-divider"></div>
-            <a href="../informativeSchool/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
+            <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
           </div>
         </li>
 
@@ -124,10 +83,10 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
           <div class="image">
             <img src="../images/Logo.png" class="img-circle" alt="logo">
           </div>
-          <div class="info">
+         <!--  <div class="info">
             <a href="#" class="d-block"><?php echo $_SESSION['user']['NOMBRE_USUARIO'] ?></a>
            
-          </div>
+          </div> -->
         </div>
 
         <!-- Sidebar Menu -->
@@ -182,11 +141,37 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
 
               </ul>
             </li>
+            <?php if($_SESSION["USER"]['COD_ROL']=='4') { 
+              echo $_SESSION["USER"]['COD_ROL'];
+              echo $_SESSION["USER"]['NOMBRE_USUARIO'];
+                echo '<li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                Gestión de Privilegios
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                  <a href="./privileges.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Privilegios</p>
+                  </a>
+                </li>
 
-            <li class="nav-item has-treeview">
+              </ul>
+
+
+
+                </li>';
+                } ?>
+           <!--  <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
+                  
                   Gestión de Privilegios
                   <i class="fas fa-angle-left right"></i>
                 </p>
@@ -202,7 +187,7 @@ if (isset($_POST["accion"]) && ($_POST["accion"] == "Agregar")) {
                 </li>
 
               </ul>
-            </li>
+            </li <li class=> -->
 
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
