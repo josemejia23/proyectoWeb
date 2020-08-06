@@ -1,5 +1,7 @@
-<?php include("db.php"); ?>
+
 <?php
+ include("db.php");
+session_start();
 $NOMBRE = '';
 $DIRECCION = '';
 $TELEFONO = '';
