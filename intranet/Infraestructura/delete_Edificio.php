@@ -8,7 +8,7 @@ if(isset($_GET['COD_EDIFICIO'])) {
   $COD_EDIFICIO = $_GET['COD_EDIFICIO'];
   $stmt->execute();
   $stmt->close();
-  header('Location: agregarEdificio.php');
+
 }
 
 ?>
