@@ -180,19 +180,19 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
+                    <a href="./Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
+                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addAula.html" class="nav-link">
+                    <a href="./Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
