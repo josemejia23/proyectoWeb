@@ -46,30 +46,5 @@ class AlumnoService extends MainService {
         }
     }
 
-
-    function insert($cedula, $nombre, $fechaNacimiento){
-        //$conex = getConection();
-        $stmt = $this->conex->prepare("INSERT INTO cliente (cedula, nombre, fecha_nacimiento) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $cedula, $nombre, $fechaNacimiento);
-        $stmt->execute();
-        $stmt->close();
-        //$this->conex->close();
-    }
-
-    function update($cedula, $nombre, $fechaNacimiento, $codCliente){
-        //$conex = getConection();
-        $stmt = $this->conex->prepare("UPDATE cliente SET cedula = ?, nombre=?, fecha_nacimiento=? WHERE cod_cliente = ?");
-        $stmt->bind_param("sssi", $cedula, $nombre, $fechaNacimiento, $codCliente);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    function delete($codCliente){
-        //$conex = getConection();
-        $stmt = $this->conex->prepare("DELETE FROM cliente WHERE cod_cliente = ?");
-        $stmt->bind_param("i", $codCliente);
-        $stmt->execute();
-        $stmt->close();
-    }
 }
 ?>
