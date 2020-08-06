@@ -1,7 +1,16 @@
 
 <?php
 include("db.php");
-session_start();
+if ($_SESSION["USER"]['COD_ROL'] == '1') 
+  {
+    session_start();
+  }
+  else
+  {
+    session_destroy();  session_destroy();
+    header('Location: ../login/login.php');
+  }
+
 $COD_ASIGNATURA = '';
 $COD_NIVEL_EDUCATIVO = '';
 $COD_DOCENTE = '';

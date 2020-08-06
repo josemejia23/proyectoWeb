@@ -374,7 +374,7 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./periodo.html" class="nav-link">
+                    <a href="./Administrator/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>

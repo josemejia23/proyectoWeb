@@ -37,7 +37,7 @@ if (isset($_POST['save_Personal']) && $_POST['accion'] == "Agregar") {
   $INTENTOS_FALLIDOS=0;
   $stmt3->execute();
   $stmt3->close();
-  header('Location: agregarPersonal.php');
+  header('Location: addPerson.php');
 } elseif (isset($_POST['save_Personal']) && $_POST['accion'] == "Modificar") {
   $_POST['COD_PERSONA'];
   $stmt = $conn->prepare("UPDATE PERSONA SET CEDULA=? , APELLIDO=? , NOMBRE=? , DIRECCION=? , TELEFONO=? , FECHA_NACIMIENTO=? ,GENERO=? ,CORREO_PERSONAL=? WHERE COD_PERSONA=" . $_POST['COD_PERSONA']);
@@ -52,7 +52,7 @@ if (isset($_POST['save_Personal']) && $_POST['accion'] == "Agregar") {
   $CORREO_PERSONAL = $_POST['CORREO_PERSONAL'];
   $stmt->execute();
   $stmt->close();
-  header('Location: agregarPersonal.php');
+  header('Location: addPerson.php');
 }elseif (isset($_POST['save_Alumno']) && $_POST['accion'] == "Modificar") {
   $_POST['COD_PERSONA'];
   $stmt = $conn->prepare("UPDATE PERSONA SET CEDULA=? , APELLIDO=? , NOMBRE=? , DIRECCION=? , TELEFONO=? , FECHA_NACIMIENTO=? ,GENERO=? ,CORREO_PERSONAL=? WHERE COD_PERSONA=" . $_POST['COD_PERSONA']);
