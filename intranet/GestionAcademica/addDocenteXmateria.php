@@ -455,9 +455,9 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                     <main class="container p-4">
             <div class="row ">
 
-              <div class="col-md-12 justify-content-center text-center my-custom-scrollbar">
-                <table class="table table-bordered">
-                  <thead>
+              <div class="table">
+              <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
+                <thead style="background-color: #00427c; color:white;">
                     <tr>
                       <th>COD_ASIG</th>
                       <th>ASIGNATURA</th>
