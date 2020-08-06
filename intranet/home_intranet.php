@@ -83,10 +83,10 @@ session_start();
           <div class="image">
             <img src="../images/Logo.png" class="img-circle" alt="logo">
           </div>
-         <div class="info">
+          <div class="info">
             <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_USUARIO'] ?></a>
-           
-          </div> 
+
+          </div>
         </div>
 
         <!-- Sidebar Menu -->
@@ -108,7 +108,7 @@ session_start();
 
 
 
-            
+
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
               <a href="./Administrator/addPerson.php" class="nav-link">
@@ -176,10 +176,41 @@ session_start();
           ';
             } ?>
 
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4') {
+              echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Gestión Matrículas
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sedes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Edificios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Aulas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+                ';
+            } ?>
 
-
-            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-                echo '<li class="nav-item has-treeview">
+            <?php //if($_SESSION["USER"]['COD_ROL']=='1') { 
+            /* echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -196,11 +227,12 @@ session_start();
                   </a>
                 </li>
               </ul>
-                </li>';
-                } ?>
-         
-            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-                echo ' <li class="nav-item has-treeview">
+                </li>'; */
+            //} 
+            ?>
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -230,47 +262,15 @@ session_start();
                 </ul>
               </li>
                 ';
-                } ?>
-            
-            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-                echo '<li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
-                    Infraestructura
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Sedes</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Edificios</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Aulas</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              ';
-                } ?>
-            
+            } ?>
 
 
-            <?php if($_SESSION["USER"]['COD_ROL']=='4' || $_SESSION["USER"]['COD_ROL']=='5') { 
-              
-              
-                echo '<li class="nav-item has-treeview">
+
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5') {
+
+
+              echo '<li class="nav-item has-treeview">
                 
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -308,11 +308,11 @@ session_start();
               </li>
   
                   ';
-                } ?>
+            } ?>
 
-            
-            <?php if($_SESSION["USER"]['COD_ROL']=='3') { 
-                echo ' <li class="nav-item has-treeview">
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '3') {
+              echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -355,14 +355,14 @@ session_start();
               </li>
   
                 ';
-                } ?>
-            
+            } ?>
 
 
-           
 
-            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-                echo '<li class="nav-item has-treeview">
+
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -395,11 +395,11 @@ session_start();
                 </ul>
               </li>
                   ';
-                } ?>
-          
+            } ?>
 
-            <?php if($_SESSION["USER"]['COD_ROL']=='1') { 
-                echo '<li class="nav-item has-treeview">
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -431,9 +431,9 @@ session_start();
                 </ul>
               </li>
   ';
-                } ?>
-            
-            
+            } ?>
+
+
           </ul>
         </nav>
 
@@ -465,7 +465,7 @@ session_start();
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-         
+
           <!-- Main row -->
           <br><br>
           <br><br>
@@ -479,7 +479,7 @@ session_start();
     <footer class="main-footer">
 
       <div class="float-right d-none d-sm-inline-block">
-      
+
       </div>
     </footer>
 

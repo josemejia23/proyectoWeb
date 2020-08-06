@@ -189,7 +189,7 @@ if (isset($_GET['COD_SEDE'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAspirant.php" class="nav-link">
+                <a href="./addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
@@ -207,7 +207,7 @@ if (isset($_GET['COD_SEDE'])) {
           </li>
           ';
             } ?>
-  
+
 
 
 
