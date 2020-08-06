@@ -140,8 +140,9 @@ if (isset($_GET['COD_SEDE'])) {
 
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
+                        
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo '<li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -163,20 +164,50 @@ if (isset($_GET['COD_SEDE'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./addAlumn.php" class="nav-link">
+                  <a href="./addAlumn." class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="./aspirants.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Aspirantes</p>
-                  </a>
-                </li>
+               
               </ul>
             </li>';
-                        } ?>
+              echo '<li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                 Aspirantes
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+                <a href="./Administrator/addAspirant.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gestionar Aspirantes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./Administrator/addAlumn.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notas Aspirantes</p>
+                </a>
+              </li>
+              
+              
+            </ul>
+            
+          </li>
+          ';
+            } ?>
+
 
 
 
