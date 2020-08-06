@@ -10,7 +10,7 @@ if (isset($_POST['save_Edificio']) && $_POST['accion'] == "Agregar") {
   $CANTIDAD_PISOS = $_POST['CANTIDAD_PISOS'];
   $stmt->execute();
   $stmt->close();
-  header('Location: agregarEdificio.php');
+
   
 } elseif (isset($_POST['save_Edificio']) && $_POST['accion'] == "Modificar") {
   echo $_POST['COD_EDIFICIO'];
@@ -23,5 +23,5 @@ if (isset($_POST['save_Edificio']) && $_POST['accion'] == "Agregar") {
   $accion = "Agregar";
   $stmt->execute();
   $stmt->close();
-  header('Location: agregarEdificio.php');
+
 }
