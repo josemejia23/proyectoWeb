@@ -445,7 +445,7 @@ if (isset($_GET['COD_EDIFICIO'])) {
 
                     <!-- Page Heading -->
 
-                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE AULAS
+                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE EDIFICIOS
                     </h5>
 
 

@@ -447,7 +447,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
 
                     <!-- Page Heading -->
 
-                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">ASIGANCION DE DOCENTE A MATERIA
+                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; "> ASIGNACIÓN DE DOCENTE A MATERIA
                     </h5>
 
 
