@@ -163,7 +163,7 @@ session_start();
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAlumn.php" class="nav-link">
+                <a href="./Administrator/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
