@@ -63,7 +63,7 @@ session_start();
 
             <div class="dropdown-divider"></div>
             <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
-             <a href="./actualizarDatos.php" class="dropdown-item dropdown-footer">Actualizar Datos</a>
+            <a href="./actualizarDatos.php" class="dropdown-item dropdown-footer">Actualizar Datos</a>
           </div>
         </li>
 
@@ -97,7 +97,7 @@ session_start();
                with font-awesome or any other icon font library -->
 
             <li class="nav-header">GESTIÓN DEL SISTEMA</li>
-            <li class="nav-item">
+            <li class="nav-item has-treeview">
               <a href="calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
@@ -105,12 +105,32 @@ session_start();
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Añadir Calendario</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Actualizar Calendario</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
               <a href="./Administrator/addPerson.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -177,7 +197,7 @@ session_start();
           ';
             } ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -227,7 +247,7 @@ session_start();
             //} 
             ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -263,7 +283,7 @@ session_start();
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5' || $_SESSION["USER"]['COD_ROL'] == '6') {
 
 
               echo '<li class="nav-item has-treeview">
@@ -271,7 +291,7 @@ session_start();
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Información Educativa
+                    Gestión Escolar
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -307,7 +327,7 @@ session_start();
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '3') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '3' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -357,7 +377,7 @@ session_start();
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -394,7 +414,7 @@ session_start();
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
