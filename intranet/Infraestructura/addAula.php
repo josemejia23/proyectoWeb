@@ -486,7 +486,7 @@ if (isset($_GET['COD_AULA'])) {
                                                 <td><?php echo $row['TIPO']; ?></td>
                                                 <td><?php echo $row['PISO']; ?></td>
                                                 <td>
-                                                    <a href="agregarAula.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-secondary">
+                                                    <a href="addAula.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-secondary">
                                                         <i class="fas fa-marker"></i>
                                                     </a>
                                                     <a href="delete_Aula.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-danger">
