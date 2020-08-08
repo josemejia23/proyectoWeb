@@ -478,77 +478,77 @@ session_start();
 
                         <!-- Page Heading -->
                         <main class="container p-4">
-            <div class="row " align="center">
+                            <div class="row " align="center">
 
-            <div class="table">
-              <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
-                <thead style="background-color: #00427c; color:white;">
-                    <tr>
-                      <th>CÓDIGO PERIODO</th>
-                      <th>FECHA DE INICIO</th>
-                      <th>FECHA FINAL</th>
-                      <th>ESTADO</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                                <div class="table">
+                                    <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
+                                        <thead style="background-color: #00427c; color:white;">
+                                            <tr>
+                                                <th>CÓDIGO PERIODO</th>
+                                                <th>FECHA DE INICIO</th>
+                                                <th>FECHA FINAL</th>
+                                                <th>ESTADO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                    <?php
-                    $result_sede = $conn->query("SELECT * FROM PERIODO_LECTIVO");
+                                            <?php
+                                            $result_sede = $conn->query("SELECT * FROM PERIODO_LECTIVO");
 
-                    while ($row = mysqli_fetch_assoc($result_sede)) { ?>
-                      <tr>
-                        <td><?php echo $row['COD_PERIODO_LECTIVO']; ?></td>
-                        <td><?php echo $row['FECHA_INICIO']; ?></td>
-                        <td><?php echo $row['FECHA_FIN']; ?></td>
-                        <td><?php echo $row['ESTADO']; ?></td>
-                        <td>
-                        <a href="agregarAnioLectivo.php?COD_PERIODO_LECTIVO=<?php echo $row['COD_PERIODO_LECTIVO'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Agregar</strong></span>
-                        </a>
-                        <br>
-                        <a href="modificarAnioLectivo.php?COD_PERIODO_LECTIVO=<?php echo $row['COD_PERIODO_LECTIVO'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Eliminar</strong></span>
-                        </a>
-                         
-                        
-                        </td>
-                      </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
-              </div>
+                                            while ($row = mysqli_fetch_assoc($result_sede)) { ?>
+                                                <tr>
+                                                    <td><?php echo $row['COD_PERIODO_LECTIVO']; ?></td>
+                                                    <td><?php echo $row['FECHA_INICIO']; ?></td>
+                                                    <td><?php echo $row['FECHA_FIN']; ?></td>
+                                                    <td><?php echo $row['ESTADO']; ?></td>
+                                                    <td>
+                                                        <a href="agregarAnioLectivo.php?COD_PERIODO_LECTIVO=<?php echo $row['COD_PERIODO_LECTIVO'] ?>" class="">
+                                                            <span class="" aria-hidden="true"></span>
+                                                            <span><strong>Agregar</strong></span>
+                                                        </a>
+                                                        <br>
+                                                        <a href="modificarAnioLectivo.php?COD_PERIODO_LECTIVO=<?php echo $row['COD_PERIODO_LECTIVO'] ?>" class="">
+                                                            <span class="" aria-hidden="true"></span>
+                                                            <span><strong>Eliminar</strong></span>
+                                                        </a>
 
-              <!-- ADD BOOKS FORM-->
-              <div class="col-md-4"></div>
-              <div class="col-md-4  ">
-                <form class="user" action="modificarAnioLectivo.php" method="POST">
-                  <div class="row justify-content-center">
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="inicioA" class="text-center">Inicio Año lectivo</label><br>
-                        <input type="date" name="FECHA_INICIO" class="form-control form-control-user" placeholder="FECHA_INICIO" value="<?php echo $FECHA_INICIO?>" autofocus>
-                      </div>
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="finA"> Fin Año lectivo</label><br>
-                        <input type="date" name="FECHA_FIN" class="form-control form-control-user" placeholder="FECHA_FIN" value="<?php echo $FECHA_FIN ?>">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="hidden" name="COD_PERIODO_LECTIVO" class="form-control form-control-user" value="<?php echo $COD_PERIODO_LECTIVO; ?>">
-                  </div>
-                  <div class="form-group" align="center">
-                    <input type="hidden" name="accion"  class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
-                    <input type="submit" name="save_AnioLectivo"  class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
-                  </div>
-                 
-                </form>
 
-              </div>
-            </div>
-          </main>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- ADD BOOKS FORM-->
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4  ">
+                                    <form class="user" action="modificarAnioLectivo.php" method="POST">
+                                        <div class="row justify-content-center">
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="inicioA" class="text-center">Inicio Año lectivo</label><br>
+                                                    <input type="date" name="FECHA_INICIO" class="form-control form-control-user" placeholder="FECHA_INICIO" value="<?php echo $FECHA_INICIO ?>" autofocus>
+                                                </div>
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="finA"> Fin Año lectivo</label><br>
+                                                    <input type="date" name="FECHA_FIN" class="form-control form-control-user" placeholder="FECHA_FIN" value="<?php echo $FECHA_FIN ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="COD_PERIODO_LECTIVO" class="form-control form-control-user" value="<?php echo $COD_PERIODO_LECTIVO; ?>">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <input type="hidden" name="accion" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
+                                            <input type="submit" name="save_AnioLectivo" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </main>
 
 
                     </div>

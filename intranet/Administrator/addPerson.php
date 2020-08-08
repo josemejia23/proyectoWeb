@@ -554,7 +554,7 @@ if (isset($_GET['buscar'])) {
 
                         <a href="addPerson.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
                           <span class="" aria-hidden="true"></span>
-                          <span><strong>Agregar</strong></span>
+                          <span><strong>Modificar</strong></span>
                         </a>
                         <a href="delete_Personal.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
                           <span class="" aria-hidden="true"></span>
