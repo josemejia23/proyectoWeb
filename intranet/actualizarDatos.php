@@ -63,7 +63,7 @@ session_start();
 
             <div class="dropdown-divider"></div>
             <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
-             <a href="./actualizarDatos.php" class="dropdown-item dropdown-footer">Actualizar Datos</a>
+             <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cambiar Contraseña</a>
           </div>
         </li>
 
@@ -101,7 +101,7 @@ session_start();
               <a href="calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
-                  Calendario Académico
+                  Horario
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
@@ -135,7 +135,7 @@ session_start();
                 <li class="nav-item">
                   <a href="./Administrator/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Alumno-Representante</p>
+                    <p>Alumnos</p>
                   </a>
                 </li>
                
@@ -190,16 +190,21 @@ session_start();
                   <li class="nav-item">
                     <a href="./Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Nuevos </p>
+                      <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="./Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Antiguos</p>
+                      <p>Edificios</p>
                     </a>
                   </li>
-                  
+                  <li class="nav-item">
+                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Aulas</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
                 ';
@@ -463,9 +468,36 @@ session_start();
         <div class="container-fluid">
 
           <!-- Main row -->
-          <br><br>
-          <br><br>
-          <div style="text-align: center;"><img src="../images/portada.png" style="width: 400px;"></div>
+         <h2 style="text-align: center;">Actualizar Datos</h2>
+         <div class="row">
+                            <!-- ADD BOOKS FORM-->
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4  ">
+                                <form action="actualizarAspirante.php" method="POST">
+                                    <div class="form-group">
+                                        <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="CEDULA" minlength="10" maxlength="10" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="APELLIDO" value="<?php echo $APELLIDO ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name="NOTA" class="form-control form-control-user" placeholder="NOTA" min="0" max="10" value="<?php echo $NOTA ?>" <?php echo $accion2; ?>>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="COD_ASPIRANTE" class="form-control form-control-user" value="<?php echo $COD_ASPIRANTE; ?>">
+                                    </div>
+
+                                    <div class="form-group" align="center">
+                                        <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
+                                        <input type="submit" name="save_Nota_Aspirante" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
           <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>

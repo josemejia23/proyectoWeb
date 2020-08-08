@@ -226,26 +226,7 @@ if (isset($_GET['buscar'])) {
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-              echo '<li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                Gestión de Privilegios
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./privileges.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Privilegios</p>
-                  </a>
-                </li>
-              </ul>
-                </li>';
-            } ?>
+           
 
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo ' <li class="nav-item has-treeview">
@@ -515,11 +496,11 @@ if (isset($_GET['buscar'])) {
                 
                 <td>
                   <h2>Representante</h2>
-                  <a href=""><img src="../../images/representante.png" alt=""></a>
+                  <a href="addRepresentante.php"><img src="../../images/representante.png" alt=""></a>
                 </td>
                 <td>
                   <h2>Alumno</h2>
-                  <a href=""><img src="../../images/alumno.png" alt=""></a>
+                  <a href="addAlumn.php"><img src="../../images/alumno.png" alt=""></a>
                 </td>
               </tr>
             </table>

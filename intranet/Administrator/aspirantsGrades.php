@@ -504,15 +504,7 @@ if (isset($_GET['buscar'])) {
 
                     <!-- Page Heading -->
                     <main class="container p-4">
-                        <form action="aspirantsGrades.php" method="GET" class="form-horizontal" align="center">
-                            <div class="form-group">
-                                <h4>
-                                    Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
-                                    <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
-                                    </p>
-                            </div>
-
-                        </form>
+                        
 
                         <div class="table">
                             <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
@@ -564,7 +556,15 @@ if (isset($_GET['buscar'])) {
                             </table>
 
                         </div>
+                        <form action="aspirantsGrades.php" method="GET" class="form-horizontal" align="center">
+                            <div class="form-group">
+                                <h4>
+                                    Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
+                                    <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
+                                    </p>
+                            </div>
 
+                        </form>
                         <div class="row">
                             <!-- ADD BOOKS FORM-->
                             <div class="col-md-4"></div>
@@ -580,7 +580,7 @@ if (isset($_GET['buscar'])) {
                                         <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>">
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" name="NOTA" class="form-control form-control-user" placeholder="NOTA" min="0" max="10" value="<?php echo $NOTA ?>" <?php echo $accion2; ?>>
+                                        <input type="number" name="NOTA" class="form-control form-control-user" placeholder="NOTA" step="0.01" min= "0.0" max="10.0" value="<?php echo $NOTA ?>" <?php echo $accion2; ?>>
                                     </div>
                                     <div class="form-group">
                                         <input type="hidden" name="COD_ASPIRANTE" class="form-control form-control-user" value="<?php echo $COD_ASPIRANTE; ?>">
