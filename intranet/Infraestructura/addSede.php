@@ -478,7 +478,7 @@ if (isset($_GET['COD_SEDE'])) {
                           <td><?php echo $row['TELEFONO']; ?></td>
                           <td><?php echo $row['CODIGO_POSTAL']; ?></td>
                           <td>
-                            <a href="agregarSede.php?COD_SEDE=<?php echo $row['COD_SEDE'] ?>" class="btn btn-secondary">
+                            <a href="addSede.php?COD_SEDE=<?php echo $row['COD_SEDE'] ?>" class="btn btn-secondary">
                               <i class="fas fa-marker"></i>
                             </a>
                             <a href="delete_Sede.php?COD_SEDE=<?php echo $row['COD_SEDE'] ?>" class="btn btn-danger">
@@ -494,7 +494,7 @@ if (isset($_GET['COD_SEDE'])) {
                 <!-- ADD BOOKS FORM-->
                 <div class="col-md-4"></div>
                 <div class="col-md-4  ">
-                  <form class="user" action="actualizarAlumno.php" method="POST">
+                  <form class="user" action="actualizarSede.php" method="POST">
                     <div class="form-group">
                       <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>" autofocus>
                     </div>

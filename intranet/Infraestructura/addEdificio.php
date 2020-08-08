@@ -481,10 +481,10 @@ if (isset($_GET['COD_EDIFICIO'])) {
                                                 <td><?php echo $row['TIPO']; ?></td>
                                                 <td><?php echo $row['PISO']; ?></td>
                                                 <td>
-                                                    <a href="agregarAula.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-secondary">
+                                                    <a href="addEdificio.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-secondary">
                                                         <i class="fas fa-marker"></i>
                                                     </a>
-                                                    <a href="delete_Aula.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-danger">
+                                                    <a href="delete_Edificio.php?COD_AULA=<?php echo $row['COD_AULA'] ?>" class="btn btn-danger">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </td>
@@ -498,7 +498,7 @@ if (isset($_GET['COD_EDIFICIO'])) {
                             <div class="col-md-4"></div>
                             <div class="col-md-4  ">
                                 <div class="card card-body">
-                                    <form action="actualizarAula.php" method="POST">
+                                    <form action="actualizarEdificio.php" method="POST">
                                         <div class="form-group">
                                             <?php
                                             $query = 'SELECT * FROM SEDE';
