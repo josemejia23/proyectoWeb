@@ -2,95 +2,52 @@
 
 include 'mainService.php';
 
-class MatriculaServicios extends MainService
+class infraestructuraServicios extends mainService
 {
-    function encontrarAlumno($cedula)
+    function mostrarInfraectructura($nombreEntidad)
     {
-        return $this->conexion->query("SELECT persona.COD_PERSONA,persona.DIRECCION, persona.NOMBRE, persona.APELLIDO
-                                       FROM persona
-                                       INNER JOIN tipo_persona_persona
-                                       ON persona.COD_PERSONA = tipo_persona_persona.COD_PERSONA
-                                       WHERE tipo_persona_persona.COD_TIPO_PERSONA='EST' AND persona.CEDULA='".$cedula."'");
+        return $this->conexion->query("SELECT * FROM ".$nombreEntidad);
     }
-    function nivelesEducativos()
+    //SEDE
+    function insertarSede($cod_sede,$nombre,$direccion,$telefono,$codigo_postal)
     {
-        return $this->conexion->query("SELECT * FROM nivel_educativo ");   
-    }
-    
-    function agregarMatricula($cod_periodo_lectivo,$cod_alumno,$cod_nivel_educativo)
-    {
-        $stmt = $this->conexion->prepare("INSERT INTO matricula_periodo (COD_PERIODO_LECTIVO,COD_ALUMNO,COD_NIVEL_EDUCATIVO) 
-                                          VALUES (?,?,?)");
-        $stmt->bind_param('sss',$cod_periodo_lectivo,$cod_alumno,$cod_nivel_educativo);
+        $stmt = $this->conexion->prepare("INSERT INTO sede(COD_SEDE,NOMBRE,DIRECCION,TELEFONO,CODIGO_POSTAL) 
+                                          VALUES (?,?,?,?,?)");
+        $stmt->bind_param('sssss',$cod_sede,$nombre,$direccion,$telefono,$codigo_postal);
         $stmt->execute();
         $stmt->close();
     }
-    function periodo()
+    function encontrarSede($codigo_sede)
     {
-        return $this->conexion->query("SELECT * FROM periodo_lectivo WHERE ESTADO='ACT'");
+        $result = $this->conexion->query("SELECT * FROM sede WHERE COD_SEDE='".$codigo_sede."'");
+        if($result->num_rows>0)
+        {
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    function modificarSede($cod_sede,$nombre,$direccion,$telefono,$codigo_postal, $cod_comparar)
+    {
+        $stmt = $this->conexion->prepare("UPDATE sede SET COD_SEDE=?,NOMBRE=?,DIRECCION=?,TELEFONO=?,CODIGO_POSTAL=?
+                                          WHERE COD_SEDE=?");
+        $stmt->bind_param('ssssss' ,$cod_sede,$nombre,$direccion,$telefono,$codigo_postal, $cod_comparar);
+        $stmt->execute();
+        $stmt->close();
     }
 
-    function mostrarPeriodos()
+    //EDIFICIOS
+    function insertarEdificio($cod_edificio,$cod_sede,$nombre,$cantidad_pisos)
     {
-        return $this->conexion->query("SELECT * FROM periodo_lectivo ");
-    }
-
-
-    function insertarPeriodo($cod_periodo_lectivo,$estado,$fecha_inicio,$fecha_fin)
-    {
-        $stmt = $this->conexion->prepare("INSERT INTO periodo_lectivo(COD_PERIODO_LECTIVO,ESTADO,FECHA_INICIO,FECHA_FIN) 
+        $stmt = $this->conexion->prepare("INSERT INTO edificio(COD_EDIFICIO,COD_SEDE,NOMBRE,CANTIDAD_PISOS) 
                                           VALUES (?,?,?,?)");
-        $stmt->bind_param('ssss',$cod_periodo_lectivo,$estado,$fecha_inicio,$fecha_fin);
+        $stmt->bind_param('sssi',$cod_edificio,$cod_sede,$nombre,$cantidad_pisos);
         $stmt->execute();
         $stmt->close();
     }
-     //PARALELOS
-     function insertarParalelo($cod_paralelo,$cod_nivel_educativo,$nombre)
-     {
-         $stmt = $this->conexion->prepare("INSERT INTO paralelo (COD_PARALELO,COD_NIVEL_EDUCATIVO,NOMBRE) 
-                                           VALUES (?,?,?)");
-         $stmt->bind_param('sss',$cod_paralelo,$cod_nivel_educativo,$nombre);
-         $stmt->execute();
-         $stmt->close();
-     }
- 
-     //PERIODO CON EL RESTO DE DATOS
-     
-     function asignaturas($cod_nivel_educativo)
-     {
-         return $this->conexion->query("SELECT * FROM asignatura WHERE  COD_NIVEL_EDUCATIVO='".$cod_nivel_educativo."'");
-     }
-     function encontrarParalelo($cod_nivel_educativo)
-     {
-         return $this->conexion->query("SELECT * FROM paralelo WHERE  COD_NIVEL_EDUCATIVO='".$cod_nivel_educativo."'");
-     }
-     function encontrarAula()
-     {
-         return $this->conexion->query("SELECT * FROM aula");
-     }
-     function encontrarProfesor()
-     {
-         return $this->conexion->query("SELECT persona.COD_PERSONA, persona.NOMBRE, persona.APELLIDO
-                                        FROM persona
-                                        INNER JOIN tipo_persona_persona
-                                        ON persona.COD_PERSONA = tipo_persona_persona.COD_PERSONA
-                                        WHERE tipo_persona_persona.COD_TIPO_PERSONA='PRO'
-                                        ORDER BY persona.APELLIDO");
-     }
- 
-     //AGREGAR DATOS DEL PERIODO
-     function agregarDatosPeriodo($cod_nivel_educativo,$cod_asignatura,$cod_periodo_lectivo,$cod_paralelo,$cod_docente,$cod_aula)
-     {
-         $stmt = $this->conexion->prepare("INSERT INTO asignatura_periodo (COD_NIVEL_EDUCATIVO,COD_ASIGNATURA,COD_PERIODO_LECTIVO,
-                                                                           COD_PARALELO,COD_DOCENTE,COD_AULA) 
-                                           VALUES (?,?,?,?,?,?)");
-         $stmt->bind_param('ssssss',$cod_nivel_educativo,$cod_asignatura,$cod_periodo_lectivo,$cod_paralelo,$cod_docente,$cod_aula);
-         $stmt->execute();
-         $stmt->close();
-     }
- 
-
-
+   
 }
 
 ?>
