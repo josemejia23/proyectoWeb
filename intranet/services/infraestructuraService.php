@@ -46,7 +46,35 @@ class infraestructuraServicios extends mainService
         $stmt->bind_param('sssi',$cod_edificio,$cod_sede,$nombre,$cantidad_pisos);
         $stmt->execute();
         $stmt->close();
+    }function encontrarEdificio($codigo_edificio)
+    {
+        $result = $this->conexion->query("SELECT * FROM edificio WHERE COD_EDIFICIO='".$codigo_edificio."'");
+        if($result->num_rows>0)
+        {
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return null;
+        }
     }
+    function modificarEdicio($cod_edificio, $cod_sede, $nombre, $cantidad_pisos, $cod_comparar)
+    {
+        $stmt = $this->conexion->prepare("UPDATE edificio SET COD_EDIFICIO=?,COD_SEDE=?,NOMBRE=?,CANTIDAD_PISOS=?
+                                          WHERE COD_EDIFICIO=?");
+        $stmt->bind_param('sssis' ,$cod_edificio,$cod_sede, $nombre, $cantidad_pisos, $cod_comparar);
+        $stmt->execute();
+        $stmt->close();
+    }
+    function eliminarEdificio($codigo_edificio)
+    {
+        $stmt = $this->conexion->prepare("DELETE FROM edificio WHERE COD_EDIFICIO=?");
+        $stmt->bind_param('s',$codigo_edificio);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+
    
 }
 
