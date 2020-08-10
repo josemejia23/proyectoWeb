@@ -3,37 +3,43 @@ session_start();
 
 ?>
 
+<?php include("db.php"); ?>
+<?php
 
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GALÁPAGOS ACADEMY SCHOOL| Home</title>
+  <title>GALÁPAGOS ACADEMY SCHOOL| </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="icon" href="../images/Logo.png" type="image/png" />
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="icon" href="../../images/Logo.png" type="image/png" />
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../styles/adminlte.min.css">
+  <link rel="stylesheet" href="../../styles/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!------ Include the above in your HEAD tag ---------->
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -63,7 +69,6 @@ session_start();
 
             <div class="dropdown-divider"></div>
             <a href="./login/php/logout.php" class="dropdown-item dropdown-footer">Cerrar Sesion</a>
-            <a href="./actualizarDatos.php" class="dropdown-item dropdown-footer">Actualizar Datos</a>
           </div>
         </li>
 
@@ -82,7 +87,7 @@ session_start();
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../images/Logo.png" class="img-circle" alt="logo">
+            <img src="../../images/Logo.png" class="img-circle" alt="logo">
           </div>
           <div class="info">
             <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_USUARIO'] ?></a>
@@ -97,42 +102,21 @@ session_start();
                with font-awesome or any other icon font library -->
 
             <li class="nav-header">GESTIÓN DEL SISTEMA</li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item">
               <a href="calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
-                  Calendario Académico
+                  Horario
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                  <a href="./Administrator/addPerson.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Añadir Calendario</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./Administrator/addPerson.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Actualizar Calendario</p>
-                  </a>
-                </li>
-              </ul>
             </li>
 
 
 
-
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
-              <a href="./Administrator/addPerson.php" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Gestión de Usuarios
@@ -147,15 +131,15 @@ session_start();
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./Administrator/addPerson.php" class="nav-link">
+                  <a href="./addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./Administrator/gestAlumno.php" class="nav-link">
+                  <a href="./addAlumn.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Alumno-Representante</p>
+                    <p>Alumnos</p>
                   </a>
                 </li>
                
@@ -184,7 +168,7 @@ session_start();
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Administrator/aspirantsGrades.php" class="nav-link">
+                <a href="./Administrator/addAlumn.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -197,36 +181,10 @@ session_start();
           ';
             } ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '6') {
-              echo ' <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
-                    Gestión Matrículas
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Nuevos </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Antiguos</p>
-                    </a>
-                  </li>
-                  
-                </ul>
-              </li>
-                ';
-            } ?>
 
-            <?php //if($_SESSION["USER"]['COD_ROL']=='1') { 
-            /* echo '<li class="nav-item has-treeview">
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -243,11 +201,10 @@ session_start();
                   </a>
                 </li>
               </ul>
-                </li>'; */
-            //} 
-            ?>
+                </li>';
+            } ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -258,19 +215,19 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                    <a href="./sede.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="./edifice.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                    <a href="./classroom.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -280,10 +237,42 @@ session_start();
                 ';
             } ?>
 
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+              echo '<li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Infraestructura
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./sede.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sedes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./edifice.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Edificios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./classroom.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Aulas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              ';
+            } ?>
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5' || $_SESSION["USER"]['COD_ROL'] == '6' || $_SESSION["USER"]['COD_ROL'] == '2') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5') {
 
 
               echo '<li class="nav-item has-treeview">
@@ -291,7 +280,7 @@ session_start();
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Gestión Escolar
+                    Información Educativa
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -327,7 +316,7 @@ session_start();
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '3' || $_SESSION["USER"]['COD_ROL'] == '6') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '3') {
               echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -377,7 +366,7 @@ session_start();
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -390,7 +379,7 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./Administrator/periodo.php" class="nav-link">
+                    <a href="./periodo.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
@@ -414,7 +403,7 @@ session_start();
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -460,87 +449,167 @@ session_start();
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark"> <a href="#" class="d-block"><?php echo $_SESSION['USER']['NOMBRE_ROL'] ?></a></h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
+      <div id="content">
 
+        <!-- Topbar -->
 
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+        <!-- End of Topbar -->
 
-      <!-- Main content -->
-      <section class="content">
+        <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Main row -->
-          <br><br>
-          <br><br>
-          <div style="text-align: center;"><img src="../images/portada.png" style="width: 400px;"></div>
-          <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
+          <!-- Page Heading -->
+
+          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Comunicado
+          </h5>
+
+
+          <!-- Page Heading -->
+          <main class="container p-4">
+
+          <div class="container-fluid">
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800"></h1>
+
+</div>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Comunicados</h6>
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-
-      <div class="float-right d-none d-sm-inline-block">
-
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="t01" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="text-center">Asunto</th>
+              <th class="text-center">Detalle</th>
+              <th class="text-center">Fecha</th>
+            </tr>
+          </thead>
+<!--                     <tfoot>
+            <tr>
+              <th class="text-center">Asunto</th>  
+              <th class="text-center">Detalle</th>
+              <th class="text-center">Fecha</th>
+            </tr>
+          </tfoot> -->
+          <tbody>
+          <?php
+             if ($result->num_rows > 0) {
+                 while ($row = $result->fetch_assoc()) {
+          ?>
+            <tr>
+              <td class="text-center"><?php echo $row["ASUNTO_COMUNICADO"]; ?></td>
+              <td class="text-center"><?php echo $row["DETALLE_COMUNICADO"]; ?></td>
+              <td class="text-center"><?php echo date('d/m/y') ?></td>
+            </tr>
+            <?php
+                   }
+               } 
+               else { ?>
+                   <tr>
+                       <td colspan="3" class="text-center">NO HAY COMUNICADOS</td>
+                   </tr>
+            <?php } ?>
+            </tbody>
+        </table>
       </div>
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+    </div>
   </div>
-  <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="../plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="../plugins/moment/moment.min.js"></script>
-  <script src="../plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="../plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../js/pages/dashboard.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="../js/demo.js"></script>
+</div>
+</div> 
+          </main>
+
+
+
+        </div>
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+
+
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+
+            <!-- Main row -->
+
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+
+        <div class="float-right d-none d-sm-inline-block">
+
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../../js/pages/dashboard.js"></script>
+    <!-- AdminLTE fo../r demo purposes -->
+    <script src="../../js/demo.js"></script>
 </body>
 
 </html>
