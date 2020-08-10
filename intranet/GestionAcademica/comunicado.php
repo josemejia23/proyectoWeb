@@ -1,11 +1,18 @@
 <?php
+include '../services/alumnoService.php';
 session_start();
 
 ?>
 
 <?php include("db.php"); ?>
 <?php
-
+if (!isset($_SESSION['EST'])) {
+    header('Location: ../Login/login.php');
+  }
+  $alumnoService = new AlumnoService();
+  isset($_GET['codigoAsignatura']);
+  $result=$alumnoService->findRelease(($_GET['codigoAsignatura']));
+  $result2=$alumnoService->findSubjetByCode(($_GET['codigoAsignatura']));
 ?>
 <!DOCTYPE html>
 <html>
