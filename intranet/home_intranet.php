@@ -315,7 +315,7 @@ session_start();
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionAcademica/homework.php" class="nav-link">
+                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -353,11 +353,23 @@ session_start();
                   </li>
               
                   <li class="nav-item">
-                    <a href="./homework.html" class="nav-link">
+                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Registrar Tareas</p>
+                      <p>Verificar Tareas</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                  <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar Tareas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comunicados</p>
+                </a>
+              </li>
                   <li class="nav-item">
                     <a href="./meets.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
