@@ -493,7 +493,7 @@ if (isset($_GET['COD_SEDE'])) {
 
 
                     <!-- Page Heading -->
-                   
+                        
                     <br><br><br><br>
                     <main class="container p-4">
                         <form action="modificarDatosAlumno.php" method="GET"  class="form-horizontal" align="center">
@@ -522,7 +522,7 @@ if (isset($_GET['COD_SEDE'])) {
                             <tbody>
 
                                 <?php
-                                $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA=4 OR TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA=5 ORDER BY PERSONA.COD_PERSONA DESC LIMIT 0, 10) t ORDER BY COD_PERSONA ASC");
+                                $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA=4 OR TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA=5 ORDER BY PERSONA.COD_PERSONA DESC LIMIT 0, 100) t ORDER BY COD_PERSONA ASC");
                                 //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
                                 while ($row = mysqli_fetch_assoc($result_sede)) { ?>
                                     <tr>
