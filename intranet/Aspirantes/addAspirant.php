@@ -181,7 +181,7 @@ if (isset($_GET['buscar'])) {
 
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
-              <a href="./Administrator/addPerson.php" class="nav-link">
+              <a href="../Administrator/addPerson.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Gestión de Usuarios
@@ -196,13 +196,13 @@ if (isset($_GET['buscar'])) {
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/addPerson.php" class="nav-link">
+                  <a href="../GestionUsuarios/addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/gestAlumno.php" class="nav-link">
+                  <a href="../GestionUsuarios/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumno-Representante</p>
                   </a>
@@ -227,13 +227,13 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./addAspirant.php" class="nav-link">
+                <a href="../addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./aspirantsGrades.php" class="nav-link">
+                <a href="../aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -257,13 +257,13 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
+                    <a href="../GestionMatriculas/matricula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Nuevos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Antiguos</p>
                     </a>
@@ -307,19 +307,19 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                    <a href="../Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                    <a href="../Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -346,7 +346,7 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./GestionAcademica/horario.php" class="nav-link">
+                <a href="../GestionAcademica/horario.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Horario</p>
                 </a>
@@ -364,7 +364,7 @@ if (isset($_GET['buscar'])) {
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -387,7 +387,7 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">
+                    <a href="../notes.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Calificaciones
                       </p>
@@ -488,19 +488,19 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/restudiantes.php" class="nav-link">
+                    <a href="../Reportes/restudiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/rdocentes.php" class="nav-link">
+                    <a href="../Reportes/rdocentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/reporteAula.php" class="nav-link">
+                    <a href="../Reportes/reporteAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>

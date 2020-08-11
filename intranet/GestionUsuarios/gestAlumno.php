@@ -226,13 +226,13 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/addAspirant.php" class="nav-link">
+                <a href="../Aspirantes/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/aspirantsGrades.php" class="nav-link">
+                <a href="../Aspirantes/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -256,13 +256,13 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
+                    <a href="../GestionMatriculas/matricula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Nuevos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Antiguos</p>
                     </a>
@@ -306,19 +306,19 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                    <a href="../Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                    <a href="../Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -345,25 +345,25 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./GestionAcademica/horario.php" class="nav-link">
+                <a href="../GestionAcademica/horario.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Horario</p>
                 </a>
               </li>
                   <li class="nav-item">
-                    <a href="./attend.html" class="nav-link">
+                    <a href="" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Asistencias</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./notes_info.html" class="nav-link">
+                    <a href="" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Calificaciones</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -386,7 +386,7 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">
+                    <a href="" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Calificaciones
                       </p>
@@ -401,19 +401,19 @@ if (isset($_GET['buscar'])) {
                   </li>
               
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Registrar Tareas</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunicados</p>
                 </a>
@@ -450,20 +450,20 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionInstitucion/periodo.php" class="nav-link">
+                    <a href="../GestionInstitucion/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./asignature.html" class="nav-link">
+                    <a href="../asignature.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Materias</p>
                     </a>
                   </li>
   
                   <li class="nav-item">
-                    <a href="./GestionUsuarios/asigDocenteMateria.php" class="nav-link">
+                    <a href="../GestionUsuarios/asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p> Docente-Asignatura</p>
                     </a>
@@ -487,19 +487,19 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/restudiantes.php" class="nav-link">
+                    <a href="../Reportes/restudiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/rdocentes.php" class="nav-link">
+                    <a href="../Reportes/rdocentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/reporteAula.php" class="nav-link">
+                    <a href="../Reportes/reporteAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>
