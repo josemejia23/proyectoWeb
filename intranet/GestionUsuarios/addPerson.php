@@ -181,7 +181,7 @@ if (isset($_GET['buscar'])) {
 
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
-              <a href="./Administrator/addPerson.php" class="nav-link">
+              <a href="./addPerson.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Gestión de Usuarios
@@ -196,13 +196,13 @@ if (isset($_GET['buscar'])) {
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/addPerson.php" class="nav-link">
+                  <a href="./addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/gestAlumno.php" class="nav-link">
+                  <a href="./gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumno-Representante</p>
                   </a>

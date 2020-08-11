@@ -227,13 +227,13 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/addAspirant.php" class="nav-link">
+                <a href="./addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/aspirantsGrades.php" class="nav-link">
+                <a href="./aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -488,7 +488,7 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/restdiantes.php" class="nav-link">
+                    <a href="./Reportes/restudiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
@@ -500,7 +500,7 @@ if (isset($_GET['buscar'])) {
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Reportes/reporteAulas.php" class="nav-link">
+                    <a href="./Reportes/reporteAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>
