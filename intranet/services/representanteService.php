@@ -59,9 +59,15 @@ class RepresentanteService extends MainService {
     function findSchedule($codRepresentante, $codAsignatura){
         return $this->conex->query("SELECT h.HORA_INICIO, h.HORA_FIN, a.DIA, p.NOMBRE 
         FROM ASIGNATURA_HORARIO a, HORARIO h, ALUMNO_ASIGNATURA_PERIODO c, PARALELO p, PERSONA r
-        WHERE a.COD_ASIGNATURA = c.COD_ASIGNATURA AND c.COD_PARALELO = p.COD_PARALELO AND h.COD_HORARIO = a.COD_HORARIO AND  
-        c.COD_ALUMNO = r.COD_PERSONA_REPRESENTANTE AND r.COD_PERSONA=".$codRepresentante." AND a.COD_ASIGNATURA=".$codAsignatura);
+        WHERE a.COD_ASIG_PERIODO = c.COD_ASIG_PERIODO AND c.COD_PARALELO = p.COD_PARALELO AND h.COD_HORARIO = a.COD_HORARIO AND  
+        c.COD_ALUMNO = r.COD_PERSONA_REPRESENTANTE AND r.COD_PERSONA=".$codRepresentante." AND c.COD_ASIGNATURA=".$codAsignatura);
     }
-
+    function updatePassword($password, $codUsuario){
+        $stmt = $this->conex->prepare("UPDATE USUARIO set CLAVE=?
+        WHERE COD_USUARIO= ?");
+        $stmt->bind_param("si", $password,$codUsuario);
+        $stmt->execute();
+        $stmt->close();
+    }
 }
 ?>

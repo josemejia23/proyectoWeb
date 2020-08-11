@@ -3,6 +3,12 @@ session_start();
 
 ?>
 
+<?php
+
+if (!isset($_SESSION['ADM'])) {
+  header('Location: ../Login/login.php');
+}
+?>
 <?php include("db.php"); ?>
 <?php
 $NOMBRE = '';
@@ -509,135 +515,109 @@ if (isset($_GET['buscar'])) {
 
           <!-- Page Heading -->
           <main class="container p-4">
+            <form action="addPerson.php" method="GET">
+              <p>
+                Búsqueda Cédula: <input class=" form-control-user" type="search" name="CEDULA" placeholder="CEDULA">
+                <input type="submit" name="buscar" value="Buscar">
+              </p>
+            </form>
 
-         
+            <div class="col-md_8 table-responsive my-custom-scrollbar" ">
+                  <table class=" table table-hover" id="dtVerticalScrollExample">
+              <thead>
+                <tr>
+                  <th scope="col">CI</th>
+                  <th scope="col">APELLIDO</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">DIRECCION</th>
+                  <th scope="col">TEL</th>
+                  <th scope="col">FECHA_NAC</th>
+                  <th scope="col">ESTADO</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            <div class="table">
-              <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
-                <thead style="background-color: #00427c; color:white;">
+                <?php
+                $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>4 AND TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>5 ORDER BY PERSONA.COD_PERSONA DESC LIMIT 0, 10) t ORDER BY COD_PERSONA ASC");
+                //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
+                while ($row = mysqli_fetch_assoc($result_sede)) { ?>
                   <tr>
-                    <th scope="col">CÓDIGO</th>
-                    <th scope="col">CÉDULA</th>
-                    <th scope="col">APELLIDO</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">DIRECCIÓN</th>
-                    <th scope="col">TELÉFONO</th>
-                    <th scope="col">FECHA NACIMIENTO</th>
-                    <th scope="col">ESTADO</th>
+                    <td hidden><?php echo 'UD' . $row['COD_PERSONA']; ?></td>
+                    <td><?php echo $row['CEDULA']; ?></td>
+                    <td><?php echo $row['APELLIDO']; ?></td>
+                    <td><?php echo $row['NOMBRE']; ?></td>
+                    <td><?php echo $row['DIRECCION']; ?></td>
+                    <td><?php echo $row['TELEFONO']; ?></td>
+                    <td><?php echo $row['FECHA_NACIMIENTO']; ?></td>
+                    <td><?php echo $row['ESTADO']; ?></td>
+                    <td>
+                      <a href="addPerson.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="btn btn-secondary">
+                        <i class="fas fa-marker"></i>
+                      </a>
+                      <a href="delete_Personal.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="btn btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                      </a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-
-                  <?php
-                  $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>4 AND TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>5 ORDER BY PERSONA.COD_PERSONA ASC LIMIT 0, 10) t ORDER BY COD_PERSONA ASC");
-                  //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
-                  while ($row = mysqli_fetch_assoc($result_sede)) { ?>
-                    <tr>
-                      <td><?php echo $row['COD_PERSONA']; ?></td>
-                      <td><?php echo $row['CEDULA']; ?></td>
-                      <td><?php echo $row['APELLIDO']; ?></td>
-                      <td><?php echo $row['NOMBRE']; ?></td>
-                      <td><?php echo $row['DIRECCION']; ?></td>
-                      <td><?php echo $row['TELEFONO']; ?></td>
-                      <td><?php echo $row['FECHA_NACIMIENTO']; ?></td>
-                      <td><?php echo $row['ESTADO']; ?></td>
-                      <td>
-
-
-                        <a href="addPerson.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Modificar</strong></span>
-                        </a>
-                        <a href="delete_Personal.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Eliminar</strong></span>
-                        </a>
-
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
+                <?php } ?>
+              </tbody>
               </table>
 
             </div>
-            <form action="addPerson.php" method="GET" class="form-horizontal" align="center">
-              <div class="form-group">
-                <h4>
-                  Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
-                  <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
-                  </p>
-              </div>
 
-            </form>
             <div class="row">
               <!-- ADD BOOKS FORM-->
               <div class="col-md-4"></div>
               <div class="col-md-4  ">
-
                 <form action="actualizarPersonal.php" method="POST">
-
-
                   <div class="form-group">
-                    <h5>Cédula:</h5>
-                    <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="1724155880" minlength="10" maxlength="10" value="<?php echo $CEDULA ?>" autofocus>
+                    <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="CEDULA" minlength="10" maxlength="10" value="<?php echo $CEDULA ?>" autofocus>
                   </div>
                   <div class="form-group">
-                    <h5>Apellidos:</h5>
-                    <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="MEJÍA" value="<?php echo $APELLIDO ?>" autofocus>
+                    <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="APELLIDO" value="<?php echo $APELLIDO ?>" autofocus>
                   </div>
                   <div class="form-group">
-                    <h5>Nombres:</h5>
-                    <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="JOSÉ LUIS" value="<?php echo $NOMBRE ?>" autofocus>
+                    <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>" autofocus>
                   </div>
                   <div class="form-group">
-                    <h5>Dirección:</h5>
-                    <input type="text" name="DIRECCION" class="form-control form-control-user" placeholder="Carcelén Av. Del Maestro N76" value="<?php echo $DIRECCION ?>">
+                    <input type="text" name="DIRECCION" class="form-control form-control-user" placeholder="DIRECCION" value="<?php echo $DIRECCION ?>">
                   </div>
                   <div class="form-group">
-                    <h5>Teléfono:</h5>
-                    <input type="text" name="TELEFONO" class="form-control form-control-user" placeholder="0998719334" min="1" max="15" value="<?php echo $TELEFONO ?>">
+                    <input type="text" name="TELEFONO" class="form-control form-control-user" placeholder="TELEFONO" minlength="7" maxlength="12" value="<?php echo $TELEFONO ?>">
                   </div>
                   <div class="form-group">
-                    <h5>Fecha de Nacimiento:</h5>
-                    <input type="date" name="FECHA_NACIMIENTO" class="form-control form-control-user" placeholder="05/12/1994" value="<?php echo $FECHA_NACIMIENTO ?>">
+                    <input type="date" name="FECHA_NACIMIENTO" class="form-control form-control-user" placeholder="FECHA_NACIMIENTO" value="<?php echo $FECHA_NACIMIENTO ?>">
                   </div>
                   <div class="form-group">
-                    <h5>Género:</h5>
-                    <select name="GENERO" class="form-control form-control-user" id="TIPO" p-1 placeholder="MASCULINO">
+                    <select name="GENERO" class="form-control form-control-user" id="TIPO" p-1 placeholder="GENERO">
                       <optgroup label="GENERO">
                         <option value="MAS">MASCULINO</option>
                         <option value="FEM">FEMENINO</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <h5>Correo Personal:</h5>
-                    <input type="email" name="CORREO_PERSONAL" class="form-control form-control-user" placeholder="joseph.06@hotmail.es" value="<?php echo $CORREO_PERSONAL ?>">
+                    <input type="email" name="CORREO_PERSONAL" class="form-control form-control-user" placeholder="CORREO_PERSONAL" value="<?php echo $CORREO_PERSONAL ?>">
                   </div>
                   <div class="form-group">
                     <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
                   </div>
                   <div class="form-group">
-                    <h5>Rol:</h5>
                     <select name="COD_ROL" class="form-control form-control-user" id="TIPO" p-1>
                       <option value="1">DIRECTIVO</option>
                       <option value="2">ADMINISTRATIVO</option>
                       <option value="3">DOCENTE</option>
                     </select>
                   </div>
-                  <div class="form-group" align="center">
-                    <input type="hidden" name="accion" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
-                    <input type="submit" name="save_Personal" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
+                  <div class="form-group">
+                    <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
                   </div>
-
+                  <input type="submit" name="save_Personal" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
                 </form>
-
-
 
               </div>
             </div>
-
-
           </main>
+
 
 
 

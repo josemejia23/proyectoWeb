@@ -1,7 +1,7 @@
 <?php
 class Connection{
     function getConnection(){
-        $enlace = mysqli_connect("127.0.0.1", "root", "admin123", "proyecto");   
+        $enlace = mysqli_connect("127.0.0.1", "root", "admin123", "proyectoFinal");   
         if (!$enlace) {
         echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
         echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
