@@ -4,6 +4,38 @@ include 'mainService.php';
 
 class AlumnoService extends MainService {
 
+      //ESTUDIANTES Y REPRESENTANTES
+      function añadirEstudiante($cod_representante,$cedula,$apellido,$nombre,$direccion,$telefono,$fecha_nacimiento,$genero,$correo,$correo_personal)
+      {
+          $stmt = $this->conexion->prepare("INSERT INTO persona (COD_PERSONA_REPRESENTANTE,CEDULA,APELLIDO,NOMBRE,DIRECCION,TELEFONO,FECHA_NACIMIENTO,
+                                                                GENERO,CORREO,CORREO_PERSONAL) 
+                                            VALUES (?,?,?,?,?,?,?,?,?,?)");
+          $stmt->bind_param('isssssssss',$cod_representante,$cedula,$apellido,$nombre,$direccion,$telefono,$fecha_nacimiento,$genero,$correo,$correo_personal);
+          $stmt->execute();
+          $stmt->close();
+      }
+      function encontrarUsuario($cod_persona)
+      {
+          $result = $this->conexion->query("SELECT * FROM usuario WHERE COD_PERSONA='".$cod_persona."'");
+          if($result->num_rows>0)
+          {
+              return $result->fetch_assoc();
+          }
+          else
+          {
+              return null;
+          }
+      }
+      function añadirRolUsuario($cod_rol,$cod_usuario,$estado)
+      {
+          $stmt = $this->conexion->prepare("INSERT INTO rol_usuario(COD_ROL,COD_USUARIO,ESTADO) 
+                                            VALUES (?,?,?)");
+          $stmt->bind_param('sis',$cod_rol,$cod_usuario,$estado);
+          $stmt->execute();
+          $stmt->close();
+      }
+  
+
     function findGrades($codAlumno){
         return $this->conex->query("SELECT a.NOMBRE, c.NOTA1, c.NOTA2, c.NOTA3, 
         c.NOTA4, c.NOTA5, c.NOTA6, c.NOTA7, c.NOTA8, c.NOTA9, c.NOTA10 FROM 
