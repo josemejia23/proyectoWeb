@@ -403,7 +403,7 @@ session_start();
                   </li>
   
                   <li class="nav-item">
-                    <a href="./teacherAsignature.html" class="nav-link">
+                    <a href="./GestionUsuarios/asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p> Docente-Asignatura</p>
                     </a>

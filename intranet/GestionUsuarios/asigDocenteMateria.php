@@ -2,56 +2,29 @@
 session_start();
 
 ?>
-
-<?php
-
-?>
 <?php include("db.php"); ?>
 <?php
-$NOMBRE = '';
-$DIRECCION = '';
-$TELEFONO = '';
-$FECHA_NACIMIENTO = '';
+$COD_ASIGNATURA = '';
+$COD_NIVEL_EDUCATIVO = '';
+$COD_DOCENTE = '';
+$COD_PARALELO = '';
+$COD_AULA = '';
+$COD_ASIG_PERIODO = '';
+$FECHAI = '';
+$FECHAF = '';
 $accion = "Agregar";
-$COD_PERSONA = "";
-$CEDULA = "";
-$APELLIDO = "";
-$CORREO = "";
-$CORREO_PERSONAL = "";
+$query = "SELECT * FROM PERIODO_LECTIVO WHERE ESTADO='ACT'";
+$result = $conn->query($query);
+$row = mysqli_fetch_assoc($result);
+$COD_PERIODO_LECTIVO = $row['COD_PERIODO_LECTIVO'];
+$FECHAI = $row['FECHA_INICIO'];
+$FECHAF = $row['FECHA_FIN'];
 
-if (isset($_GET['COD_PERSONA'])) {
-  $result_sede = $conn->query("SELECT * FROM PERSONA WHERE COD_PERSONA=" . $_GET['COD_PERSONA']);
-  if (mysqli_num_rows($result_sede) == 1) {
-    $row = mysqli_fetch_array($result_sede);
-    $COD_PERSONA = $row['COD_PERSONA'];
-    $CEDULA = $row['CEDULA'];
-    $APELLIDO = $row['APELLIDO'];
-    $NOMBRE = $row['NOMBRE'];
-    $DIRECCION = $row['DIRECCION'];
-    $TELEFONO = $row['TELEFONO'];
-    $FECHA_NACIMIENTO = $row['FECHA_NACIMIENTO'];
-    $GENERO = $row['GENERO'];
-    $CORREO_PERSONAL = $row['CORREO_PERSONAL'];
-    $accion = "Modificar";
-  }
+if (isset($_GET['COD_ASIG_PERIODO'])) {
+  echo $COD_ASIG_PERIODO = $_GET['COD_ASIG_PERIODO'];
+  $accion = "Modificar";
 }
-if (isset($_GET['buscar'])) {
-  $resp = '"%' . $_GET['CEDULA'] . '%"';
-  $result_sede = $conn->query("SELECT * FROM PERSONA WHERE CEDULA LIKE" . $resp);
-  if (mysqli_num_rows($result_sede) == 1) {
-    $row = mysqli_fetch_array($result_sede);
-    $COD_PERSONA = $row['COD_PERSONA'];
-    $CEDULA = $row['CEDULA'];
-    $APELLIDO = $row['APELLIDO'];
-    $NOMBRE = $row['NOMBRE'];
-    $DIRECCION = $row['DIRECCION'];
-    $TELEFONO = $row['TELEFONO'];
-    $FECHA_NACIMIENTO = $row['FECHA_NACIMIENTO'];
-    $GENERO = $row['GENERO'];
-    $CORREO_PERSONAL = $row['CORREO_PERSONAL'];
-    $accion = "Modificar";
-  }
-}
+?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -512,103 +485,143 @@ if (isset($_GET['buscar'])) {
 
           <!-- Page Heading -->
           <main class="container p-4">
-            <form action="addPerson.php" method="GET">
-              <p>
-                Búsqueda Cédula: <input class=" form-control-user" type="search" name="CEDULA" placeholder="CEDULA">
-                <input type="submit" name="buscar" value="Buscar">
-              </p>
-            </form>
+            <div class="row ">
 
-            <div class="col-md_8 table-responsive my-custom-scrollbar" ">
-                  <table class=" table table-hover" id="dtVerticalScrollExample">
-              <thead>
-                <tr>
-                  <th scope="col">CI</th>
-                  <th scope="col">APELLIDO</th>
-                  <th scope="col">NOMBRE</th>
-                  <th scope="col">DIRECCION</th>
-                  <th scope="col">TEL</th>
-                  <th scope="col">FECHA_NAC</th>
-                  <th scope="col">ESTADO</th>
-                </tr>
-              </thead>
-              <tbody>
+              <div class="col-md-12 justify-content-center text-center my-custom-scrollbar">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>COD_ASIG</th>
+                      <th>ASIGNATURA</th>
+                      <th>AULA</th>
+                      <th>PARALELO</th>
+                      <th>NOMBRE</th>
+                      <th>APELLIDO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                <?php
-                $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>4 AND TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>5 ORDER BY PERSONA.COD_PERSONA DESC LIMIT 0, 10) t ORDER BY COD_PERSONA ASC");
-                //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
-                while ($row = mysqli_fetch_assoc($result_sede)) { ?>
-                  <tr>
-                    <td hidden><?php echo 'UD' . $row['COD_PERSONA']; ?></td>
-                    <td><?php echo $row['CEDULA']; ?></td>
-                    <td><?php echo $row['APELLIDO']; ?></td>
-                    <td><?php echo $row['NOMBRE']; ?></td>
-                    <td><?php echo $row['DIRECCION']; ?></td>
-                    <td><?php echo $row['TELEFONO']; ?></td>
-                    <td><?php echo $row['FECHA_NACIMIENTO']; ?></td>
-                    <td><?php echo $row['ESTADO']; ?></td>
-                    <td>
-                      <a href="addPerson.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="btn btn-secondary">
-                        <i class="fas fa-marker"></i>
-                      </a>
-                      <a href="delete_Personal.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="btn btn-danger">
-                        <i class="far fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-              </table>
+                    <?php
+                    $result_sede = $conn->query("SELECT ASIGNATURA_PERIODO.COD_ASIG_PERIODO ,ASIGNATURA.NOMBRE AS ASIGNATURA, AULA.NOMBRE AS AULA,  PARALELO.NOMBRE AS PARALELO, PERSONA.NOMBRE AS NOM_PROF, PERSONA.APELLIDO AS APE_PROF FROM ASIGNATURA_PERIODO INNER JOIN ASIGNATURA ON ASIGNATURA_PERIODO.COD_ASIG_PERIODO=ASIGNATURA.COD_ASIGNATURA INNER JOIN PERIODO_LECTIVO ON ASIGNATURA_PERIODO.COD_PERIODO_LECTIVO=PERIODO_LECTIVO.COD_PERIODO_LECTIVO INNER JOIN PARALELO ON PARALELO.COD_PARALELO=ASIGNATURA_PERIODO.COD_PARALELO INNER JOIN  AULA ON ASIGNATURA_PERIODO.COD_AULA=AULA.COD_AULA INNER JOIN PERSONA ON PERSONA.COD_PERSONA=ASIGNATURA_PERIODO.COD_DOCENTE");
 
-            </div>
-
-            <div class="row">
+                    while ($row = mysqli_fetch_assoc($result_sede)) { ?>
+                      <tr>
+                        <td><?php echo $row['COD_ASIG_PERIODO']; ?></td>
+                        <td><?php echo $row['ASIGNATURA']; ?></td>
+                        <td><?php echo $row['AULA']; ?></td>
+                        <td><?php echo $row['PARALELO']; ?></td>
+                        <td><?php echo $row['NOM_PROF']; ?></td>
+                        <td><?php echo $row['APE_PROF']; ?></td>
+                        <td>
+                          <a href="asigDocenteMateria.php?COD_ASIG_PERIODO=<?php echo $row['COD_ASIG_PERIODO'] ?>" class="btn btn-secondary">
+                            <i class="fas fa-marker"></i>
+                          </a>
+                          <a href="delete_AsigDocenteMateria.php?COD_ASIG_PERIODO=<?php echo $row['COD_ASIG_PERIODO'] ?>" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
               <!-- ADD BOOKS FORM-->
               <div class="col-md-4"></div>
-              <div class="col-md-4  ">
-                <form action="actualizarPersonal.php" method="POST">
+              <div class="col-md-4 py-3 ">
+                <form class="user" action="modificarDocenteMateria.php" method="POST">
+
                   <div class="form-group">
-                    <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="CEDULA" minlength="10" maxlength="10" value="<?php echo $CEDULA ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="APELLIDO" value="<?php echo $APELLIDO ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="DIRECCION" class="form-control form-control-user" placeholder="DIRECCION" value="<?php echo $DIRECCION ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="TELEFONO" class="form-control form-control-user" placeholder="TELEFONO" minlength="7" maxlength="12" value="<?php echo $TELEFONO ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="date" name="FECHA_NACIMIENTO" class="form-control form-control-user" placeholder="FECHA_NACIMIENTO" value="<?php echo $FECHA_NACIMIENTO ?>">
-                  </div>
-                  <div class="form-group">
-                    <select name="GENERO" class="form-control form-control-user" id="TIPO" p-1 placeholder="GENERO">
-                      <optgroup label="GENERO">
-                        <option value="MAS">MASCULINO</option>
-                        <option value="FEM">FEMENINO</option>
+                    <?php
+                    $query = 'SELECT * FROM ASIGNATURA';
+                    $result = $conn->query($query);
+                    ?>
+                    <select name="COD_ASIGNATURA" class="form-control" id="selector">
+                      <?php
+                      while ($row = $result->fetch_array()) {
+                      ?>
+                        <option value="<?php echo $row['COD_ASIGNATURA']?>">
+                          <?php echo $row['NOMBRE'] . '- Creditos:' . $row['CREDITOS']; ?>
+                        </option>
+                      <?php
+                      }
+                      ?>
                     </select>
+                    <?php
+                    ?>
                   </div>
+
                   <div class="form-group">
-                    <input type="email" name="CORREO_PERSONAL" class="form-control form-control-user" placeholder="CORREO_PERSONAL" value="<?php echo $CORREO_PERSONAL ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
-                  </div>
-                  <div class="form-group">
-                    <select name="COD_ROL" class="form-control form-control-user" id="TIPO" p-1>
-                      <option value="1">DIRECTIVO</option>
-                      <option value="2">ADMINISTRATIVO</option>
-                      <option value="3">DOCENTE</option>
+                    <?php
+                    $query = 'SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA=3';
+                    $result = $conn->query($query);
+                    ?>
+                    <select name="COD_PERSONA" class="form-control" id="selector">
+                      <?php
+                      while ($row = $result->fetch_array()) {
+                      ?>
+                        <option value="<?php echo $row['COD_PERSONA'] ?>">
+                          <?php echo $row['NOMBRE'] . '-' . $row['APELLIDO']; ?>
+                        </option>
+                      <?php
+                      }
+                      ?>
                     </select>
+                    <?php
+                    ?>
+                  </div>
+                  <div class="form-group">
+                    <?php
+                    $query = 'SELECT * FROM AULA';
+                    $result = $conn->query($query);
+                    ?>
+                    <select name="COD_AULA" class="form-control" id="selector">
+                      <?php
+                      while ($row = $result->fetch_array()) {
+                      ?>
+                        <option value="<?php echo $row['COD_AULA'] ?>">
+                          <?php echo $row['NOMBRE'] ?>
+                        </option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                    <?php
+                    ?>
+                  </div>
+                  <div class="form-group">
+                    <?php
+                    $query = 'SELECT PARALELO.COD_PARALELO, PARALELO.NOMBRE, NIVEL_EDUCATIVO.NOMBRE_NIVEL FROM PARALELO INNER JOIN NIVEL_EDUCATIVO ON PARALELO.COD_NIVEL_EDUCATIVO=NIVEL_EDUCATIVO.COD_NIVEL_EDUCATIVO ';
+                    $result = $conn->query($query);
+                    ?>
+                    <select name="COD_PARALELO" class="form-control" id="selector">
+                      <?php
+                      while ($row = $result->fetch_array()) {
+                      ?>
+                        <option value="<?php echo $row['COD_PARALELO'] ?>">
+                          <?php $NIVEL = $row['COD_PARALELO'] ?>
+                          <?php echo $row['NOMBRE'] . '-' . $row['NOMBRE_NIVEL'] ?>
+                        </option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                    <?php
+                    ?>
+                  </div>
+
+                  <div class="form-group text-center">
+                    <input type="hidden" name="COD_PERIODO_LECTIVO" class="form-control form-control-user" placeholder="PERIODO" value="<?php echo $COD_PERIODO_LECTIVO;?>">
+                  </div>
+                  <div class="form-group text-center">
+                    <input type="hidden" name="COD_NIVEL_EDUCATIVO" class="form-control form-control-user" placeholder="PERIODO" value="<?php echo $COD_NIVEL_EDUCATIVO;?>">
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" name="COD_ASIG_PERIODO" class="form-control form-control-user" value="<?php echo $COD_ASIG_PERIODO ?>">
                   </div>
                   <div class="form-group">
                     <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
                   </div>
-                  <input type="submit" name="save_Personal" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
+                  <input type="submit" name="save_materia_profesor" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
                 </form>
 
               </div>
