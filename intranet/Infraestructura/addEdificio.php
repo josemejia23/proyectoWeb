@@ -469,7 +469,7 @@ if (isset($_GET['COD_EDIFICIO'])) {
                                     <tbody>
 
                                         <?php
-                                        $result_AULA = $conn->query("SELECT COD_AULA, AULA.NOMBRE AS AN, SEDE.NOMBRE AS SN, EDIFICIO.NOMBRE AS EN, CAPACIDAD,TIPO, PISO FROM AULA INNER JOIN EDIFICIO ON AULA.COD_EDIFICIO=EDIFICIO.COD_EDIFICIO INNER JOIN SEDE ON SEDE.COD_SEDE=EDIFICIO.COD_SEDE");
+                                        $result_AULA = $conn->query("SELECT COD_AULA, AULA.NOMBRE_AULA AS AN, SEDE.NOMBRE AS SN, EDIFICIO.NOMBRE AS EN, CAPACIDAD,TIPO, PISO FROM AULA INNER JOIN EDIFICIO ON AULA.COD_EDIFICIO=EDIFICIO.COD_EDIFICIO INNER JOIN SEDE ON SEDE.COD_SEDE=EDIFICIO.COD_SEDE");
 
                                         while ($row = mysqli_fetch_assoc($result_AULA)) { ?>
                                             <tr>

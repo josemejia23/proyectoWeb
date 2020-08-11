@@ -516,7 +516,7 @@ if (isset($_GET['buscar'])) {
                                         <td><?php echo $row['DIRECCION']; ?></td>
                                         <td><?php echo $row['TELEFONO']; ?></td>
                                         <td><?php echo $row['FECHA_NACIMIENTO']; ?></td>
-                                        <td><?php echo $row['NOMBRE']; ?></td>
+                                        <td><?php echo $row['NOMBRE_NIVEL']; ?></td>
                                         <td>
                                             
                                             <a href="addAspirant.php?COD_ASPIRANTE=<?php echo $row['COD_ASPIRANTE'] ?>"  class="">
