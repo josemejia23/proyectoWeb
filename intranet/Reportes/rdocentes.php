@@ -426,7 +426,7 @@ session_start();
 
                     <!-- Page Heading -->
 
-                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Reportes DE AULAS
+                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Reportes DE Docentes
                     </h5>
 
 
@@ -434,7 +434,7 @@ session_start();
                     <main class="container p-4">
                         <div class="row ">
                         <div class="form-group">                                
-                                             <input type="button" class="btn btn-primary" href="#"  onclick="location.href='./reporInfraestructura.php';"  target="_blank" value="Generar reporte Aulas" />
+                                             <input type="button" class="btn btn-primary" href="#"  onclick="location.href='./repoDocentes.php';"  target="_blank" value="Generar reporte Aulas" />
                                       </div>
        
                     

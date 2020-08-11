@@ -32,4 +32,5 @@
 
 	}
 	$pdf->Output();
+	//$pdf->Output('F', 'salida.pdf');
 ?>
