@@ -27,7 +27,7 @@ if (isset($_POST['save_Aspirante']) && $_POST['accion'] == "Agregar") {
   $COD_NIVEL_EDUCATIVO = $_POST['COD_NIVEL_EDUCATIVO'];
   $stmt2->execute();
   $stmt2->close();
-  header('Location: agregarAspirante.php');
+  header('Location: addAspirant.php');
 } elseif (isset($_POST['save_Aspirante']) && $_POST['accion'] == "Modificar") {
   $_POST['COD_ASPIRANTE'];
   $stmt = $conn->prepare("UPDATE ASPIRANTE SET CEDULA=? , APELLIDO=? , NOMBRE=? , DIRECCION=? , TELEFONO=? , FECHA_NACIMIENTO=? ,GENERO=? ,CORREO_PERSONAL=? WHERE COD_ASPIRANTE=" . $_POST['COD_ASPIRANTE']);
@@ -47,7 +47,7 @@ if (isset($_POST['save_Aspirante']) && $_POST['accion'] == "Agregar") {
   $COD_NIVEL_EDUCATIVO = $_POST['COD_NIVEL_EDUCATIVO'];
   $stmt->execute();
   $stmt->close();
-  header('Location: agregarAspirante.php');
+  header('Location: addAspirante.php');
 }
 elseif (isset($_POST['save_Nota_Aspirante']) && $_POST['accion'] == "Agregar") {
   $_POST['COD_ASPIRANTE'];

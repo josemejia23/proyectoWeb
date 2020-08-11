@@ -147,13 +147,13 @@ session_start();
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./Administrator/addPerson.php" class="nav-link">
+                  <a href="./GestionUsuarios/addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./Administrator/gestAlumno.php" class="nav-link">
+                  <a href="./GestionUsuarios/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumno-Representante</p>
                   </a>
@@ -178,13 +178,13 @@ session_start();
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAspirant.php" class="nav-link">
+                <a href="./Aspirantes/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Administrator/aspirantsGrades.php" class="nav-link">
+                <a href="./Aspirantes/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -390,7 +390,7 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./Administrator/periodo.php" class="nav-link">
+                    <a href="./GestionInstitucion/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>

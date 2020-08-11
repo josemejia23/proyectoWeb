@@ -482,14 +482,7 @@ if (isset($_GET['buscar'])) {
                     <!-- Page Heading -->
                     <main class="container p-4">
                         
-                        <form action="agregarAspirante.php" method="GET"  class="form-horizontal" align="center">
-                        <div class="form-group" align="center">
-                                <h4>
-                                    Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
-                                    <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
-                                    </p>
-                            </div>
-                        </form>
+                        
 
                         <div class="table">
                   <table class=" table table-hover" id="dtVerticalScrollExample">
@@ -538,7 +531,14 @@ if (isset($_GET['buscar'])) {
                             </table>
 
                         </div>
-
+                        <form action="addAspirant.php" method="GET"  class="form-horizontal" align="center">
+                        <div class="form-group" align="center">
+                                <h4>
+                                    Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
+                                    <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
+                                    </p>
+                            </div>
+                        </form>
                         <div class="row">
                             <!-- ADD BOOKS FORM-->
                             <div class="col-md-4"></div>
@@ -582,7 +582,7 @@ if (isset($_GET['buscar'])) {
                                             while ($row = $result->fetch_array()) {
                                             ?>
                                                 <option value=" <?php echo $row['COD_NIVEL_EDUCATIVO'] ?> ">
-                                                    <?php echo $row['NOMBRE'] . '-' . $row['NIVEL']; ?>
+                                                    <?php echo $row['NOMBRE_NIVEL'] . '-' . $row['NIVEL']; ?>
                                                 </option>
                                             <?php
                                             }
