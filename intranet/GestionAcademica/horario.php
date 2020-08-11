@@ -1,10 +1,14 @@
+
 <?php
 include '../services/representanteService.php';
+
 session_start();
 
+
 $representanteService = new RepresentanteService();
-$result = $representanteService->findGrades($_SESSION['USER']['COD_PERSONA']);
 $result2 = $representanteService->findSubjet($_SESSION['USER']['COD_PERSONA']);
+$result = $representanteService->findSubjet($_SESSION['USER']['COD_PERSONA']);
+
 ?>
 <html>
 
@@ -458,7 +462,7 @@ $result2 = $representanteService->findSubjet($_SESSION['USER']['COD_PERSONA']);
 
           <!-- Page Heading -->
 
-          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Calificaciones
+          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Horario
           </h5>
 
 
@@ -466,57 +470,49 @@ $result2 = $representanteService->findSubjet($_SESSION['USER']['COD_PERSONA']);
           <main class="container p-4">
           
 
-            <div class="col-md_8 table-responsive my-custom-scrollbar" ">
-                  <table class=" table table-hover" id="dtVerticalScrollExample">
-              <thead>
-                <tr>
-               
-                   
-                        <th class="text-center">Asignatura</th>
-                        <th class="text-center">Tareas</th>
-                        <th class="text-center">Talleres</th>
-                        <th class="text-center">Pruebas</th>
-                        <th class="text-center">Exámen</th>
-                        <th class="text-center">Promedio 1er Quimestre</th>
-                        <th class="text-center">Tareas</th>
-                        <th class="text-center">Talleres</th>
-                        <th class="text-center">Pruebas</th>
-                        <th class="text-center">Exámen</th>
-                        <th class="text-center">Promedio 2do Quimestre</th>
-                      </tr>
-                 
-                
-              </thead>
-              <tbody>
-                    <?php
-                       if ($result->num_rows > 0) {
-                           while ($row = $result->fetch_assoc()) {
-                    ?>
-                      <tr>
-                        <td class="text-center"><?php echo $row["NOMBRE"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA1"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA2"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA3"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA4"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA5"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA6"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA7"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA8"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA9"]; ?></td>
-                        <td class="text-center"><?php echo $row["NOTA10"]; ?></td>
-                      </tr>
-                      <?php
-                             }
-                         } 
-                         else { ?>
-                             <tr>
-                                 <td colspan="11" class="text-center">NO HAY DATOS</td>
-                             </tr>
-                      <?php } ?>
-                      </tbody>
-              </table>
-
-            </div>
+          <div class="row ">
+                    <!-- Content Row -->
+                        <?php
+                        
+                            while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                        <a class="btn btn-fix ">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                <div class="col-auto">
+                                <i class="fas fa-book fa-3x text-gray-300 mb-2"></i>
+                                </div>
+                                
+                                    <div class="h4 text-primary-800 font-weight-bold text-primary text-uppercase mb-2"><?php echo $row['NOMBRE']; ?> </div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">----------------------------</div>
+                                    <?php
+                                        $result3 = $representanteService->findSchedule($_SESSION['USER']['COD_PERSONA'], $row['COD_ASIGNATURA']);
+                                        if ($result3->num_rows > 0) {
+                                        while ($row1 = $result3->fetch_assoc()) {
+                                    ?>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row1['HORA_INICIO'];?> - <?php echo $row1['HORA_FIN'];?></div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?php echo $row1['DIA'];?> - PARALELO: <?php echo $row1['NOMBRE'];?></div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">----------------------------</div>
+                                    <?php
+                                 }} ?>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">::::::</div>
+                                    <div class="row no-gutters align-items-center"></div>
+                                    <div class="col">
+                                 
+                                    </div>
+                                </div>
+                                </div>                               
+                            </div>
+                            
+                        </div>
+                        </div>
+                        </a>
+                        <?php
+                                 } ?>
+                </div>
 
           </main>
 
