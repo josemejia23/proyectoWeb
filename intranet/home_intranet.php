@@ -208,7 +208,7 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Nuevos </p>
                     </a>
@@ -405,7 +405,7 @@ session_start();
                   <li class="nav-item">
                     <a href="./teacherAsignature.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Asignación de Docentes</p>
+                      <p> Docente-Asignatura</p>
                     </a>
                   </li>
                 </ul>

@@ -5,49 +5,52 @@ session_start();
 
 <?php include("db.php"); ?>
 <?php
-$NOMBRE = '';
-$DIRECCION = '';
-$TELEFONO = '';
-$FECHA_NACIMIENTO = '';
-$accion = "Agregar";
+
+$accion = "Matricular";
+$accion2 = "disabled";
 $COD_PERSONA = "";
+$NOTA = "";
 $CEDULA = "";
+$NOMBRE = '';
 $APELLIDO = "";
-$CORREO = "";
-$CORREO_PERSONAL = "";
+$NIVEL_SIG = "";
+$ESTADO="";
+$NOMBRE_NIVEL = '';
+$NIVEL = '';
+$COD_NIVEL_EDUCATIVO = '';
+$accion2 = "style='display: none'";
+$aux = '1726869991';
+
 
 if (isset($_GET['COD_PERSONA'])) {
-  $result_sede = $conn->query("SELECT * FROM PERSONA WHERE COD_PERSONA=" . $_GET['COD_PERSONA']);
-  if (mysqli_num_rows($result_sede) == 1) {
-    $row = mysqli_fetch_array($result_sede);
-    $COD_PERSONA = $row['COD_PERSONA'];
-    $CEDULA = $row['CEDULA'];
-    $APELLIDO = $row['APELLIDO'];
-    $NOMBRE = $row['NOMBRE'];
-    $DIRECCION = $row['DIRECCION'];
-    $TELEFONO = $row['TELEFONO'];
-    $FECHA_NACIMIENTO = $row['FECHA_NACIMIENTO'];
-    $GENERO = $row['GENERO'];
-    $CORREO_PERSONAL = $row['CORREO_PERSONAL'];
-    $accion = "Modificar";
-  }
+    echo $_GET['COD_PERSONA'];
+    $result_sede = $conn->query("SELECT * FROM ASPIRANTE INNER JOIN CALIFICACION_PRUEBA_ASPIRANTE ON ASPIRANTE.COD_PERSONA=CALIFICACION_PRUEBA_ASPIRANTE.COD_PERSONA INNER JOIN NIVEL_EDUCATIVO ON NIVEL_EDUCATIVO.COD_NIVEL_EDUCATIVO=CALIFICACION_PRUEBA_ASPIRANTE.COD_NIVEL_EDUCATIVO WHERE ASPIRANTE.COD_PERSONA=" . $_GET['COD_PERSONA']);
+    if (mysqli_num_rows($result_sede) == 1) {
+        $row = mysqli_fetch_array($result_sede);
+        $COD_PERSONA = $row['COD_PERSONA'];
+        $NOTA = $row['CALIFICACION'];
+        $CEDULA = $row['CEDULA'];
+        $APELLIDO = $row['APELLIDO'];
+        $NOMBRE = $row['NOMBRE'];
+        $accion = "Modificar";
+        $accion2 = "autofocus";
+    }
 }
 if (isset($_GET['buscar'])) {
-  $resp = '"%' . $_GET['CEDULA'] . '%"';
-  $result_sede = $conn->query("SELECT * FROM PERSONA WHERE CEDULA LIKE" . $resp);
-  if (mysqli_num_rows($result_sede) == 1) {
-    $row = mysqli_fetch_array($result_sede);
-    $COD_PERSONA = $row['COD_PERSONA'];
-    $CEDULA = $row['CEDULA'];
-    $APELLIDO = $row['APELLIDO'];
-    $NOMBRE = $row['NOMBRE'];
-    $DIRECCION = $row['DIRECCION'];
-    $TELEFONO = $row['TELEFONO'];
-    $FECHA_NACIMIENTO = $row['FECHA_NACIMIENTO'];
-    $GENERO = $row['GENERO'];
-    $CORREO_PERSONAL = $row['CORREO_PERSONAL'];
-    $accion = "Modificar";
-  }
+    $resp = '"%' . $_GET['CEDULA'] . '%"';
+    $aux = $resp;
+
+    $result_sede = $conn->query("SELECT PERSONA.COD_PERSONA, PERSONA.APELLIDO, PERSONA.NOMBRE, PERSONA.CEDULA FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON TIPO_PERSONA_PERSONA.COD_PERSONA=PERSONA.COD_PERSONA INNER JOIN TIPO_PERSONA ON TIPO_PERSONA.COD_TIPO_PERSONA=TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA
+    WHERE TIPO_PERSONA.COD_TIPO_PERSONA=4 AND PERSONA.CEDULA LIKE" . $resp);
+    if (mysqli_num_rows($result_sede) == 1) {
+        $row = mysqli_fetch_array($result_sede);
+        $COD_PERSONA = $row['COD_PERSONA'];
+        $CEDULA = $row['CEDULA'];
+        $APELLIDO = $row['APELLIDO'];
+        $NOMBRE = $row['NOMBRE'];
+        $accion2 = "";
+        //$accion = "Modificar";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -509,135 +512,107 @@ if (isset($_GET['buscar'])) {
 
           <!-- Page Heading -->
           <main class="container p-4">
+                        <form action="matricula.php" method="GET">
+                            <p>
+                                Búsqueda Cédula: <input type="search" name="CEDULA" placeholder="CEDULA">
+                                <input type="submit" name="buscar" value="Buscar">
+                            </p>
+                        </form>
+                        <div class="row">
+                            <!-- ADD BOOKS FORM-->
+                            <div class="col-md-4  ">
+                                <form action="matricula.php" method="POST">
+                                    <div class="form-group">
+                                        <label for="" <?php echo $accion2; ?>><?php echo 'Cédula: ' . $CEDULA ?></label>
+                                        <br>
+                                        <label for="" <?php echo $accion2; ?>><?php echo 'Apellido: ' . $APELLIDO ?></label>
+                                        <br>
+                                        <label for="" <?php echo $accion2; ?>><?php echo 'Nombre: ' . $NOMBRE ?></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
+                                    </div>
 
-            <form action="addPerson.php" method="GET" class="form-horizontal" align="center">
-              <div class="form-group">
-                <h4>
-                  Búsqueda por Cédula: <input class=" form-control-user" type="search" name="CEDULA">
-                  <input type="submit" name="buscar" value="Buscar" class="btn btn-primary py-2 px-5">
-                  </p>
-              </div>
-
-            </form>
-
-            <div class="table">
-              <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
-                <thead style="background-color: #00427c; color:white;">
-                  <tr>
-                    <th scope="col">CÓDIGO</th>
-                    <th scope="col">CÉDULA</th>
-                    <th scope="col">APELLIDO</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">DIRECCIÓN</th>
-                    <th scope="col">TELÉFONO</th>
-                    <th scope="col">FECHA NACIMIENTO</th>
-                    <th scope="col">ESTADO</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <?php
-                  $result_sede = $conn->query("SELECT * FROM (SELECT PERSONA.COD_PERSONA, PERSONA.CEDULA, PERSONA.NOMBRE, PERSONA.APELLIDO,PERSONA.DIRECCION,PERSONA.CORREO_PERSONAL, PERSONA.TELEFONO, PERSONA.FECHA_NACIMIENTO, TIPO_PERSONA_PERSONA.ESTADO FROM PERSONA INNER JOIN TIPO_PERSONA_PERSONA ON PERSONA.COD_PERSONA= TIPO_PERSONA_PERSONA.COD_PERSONA WHERE TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>4 AND TIPO_PERSONA_PERSONA.COD_TIPO_PERSONA<>5 ORDER BY PERSONA.COD_PERSONA ASC LIMIT 0, 10) t ORDER BY COD_PERSONA ASC");
-                  //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
-                  while ($row = mysqli_fetch_assoc($result_sede)) { ?>
-                    <tr>
-                      <td><?php echo $row['COD_PERSONA']; ?></td>
-                      <td><?php echo $row['CEDULA']; ?></td>
-                      <td><?php echo $row['APELLIDO']; ?></td>
-                      <td><?php echo $row['NOMBRE']; ?></td>
-                      <td><?php echo $row['DIRECCION']; ?></td>
-                      <td><?php echo $row['TELEFONO']; ?></td>
-                      <td><?php echo $row['FECHA_NACIMIENTO']; ?></td>
-                      <td><?php echo $row['ESTADO']; ?></td>
-                      <td>
+                                    <div class="form-group">
+                                        <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
+                                </form>
+                            </div>
+                        </div>
 
 
-                        <a href="addPerson.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Modificar</strong></span>
-                        </a>
-                        <a href="delete_Personal.php?COD_PERSONA=<?php echo $row['COD_PERSONA'] ?>" class="">
-                          <span class="" aria-hidden="true"></span>
-                          <span><strong>Eliminar</strong></span>
-                        </a>
+                        <div class="col-md_8 table-responsive">
+                            <table class=" table table-hover" id="dtVerticalScrollExample">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">CP</th>
+                                        <th scope="col">NOMBRE_NIVEL</th>
+                                        <th scope="col">NIVEL</th>
+                                        <th scope="col">PROMEDIO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
+                                    <?php
+                                    $result_sede = $conn->query("SELECT PERSONA.COD_PERSONA ,PERSONA.NOMBRE, PERSONA.APELLIDO, PERSONA.CEDULA, MATRICULA_PERIODO.PROMEDIO_FINAL, NIVEL_EDUCATIVO.COD_NIVEL_EDUCATIVO, NIVEL_EDUCATIVO.NOMBRE_NIVEL, NIVEL_EDUCATIVO.NIVEL,PERIODO_LECTIVO.COD_PERIODO_LECTIVO,PERIODO_LECTIVO.ESTADO, ALUMNO_ASIGNATURA_PERIODO.NOTA11  from MATRICULA_PERIODO INNER JOIN PERSONA ON PERSONA.COD_PERSONA=MATRICULA_PERIODO.COD_ALUMNO INNER JOIN NIVEL_EDUCATIVO ON NIVEL_EDUCATIVO.COD_NIVEL_EDUCATIVO=MATRICULA_PERIODO.COD_NIVEL_EDUCATIVO INNER JOIN PERIODO_LECTIVO on PERIODO_LECTIVO.COD_PERIODO_LECTIVO=MATRICULA_PERIODO.COD_PERIODO_LECTIVO INNER JOIN ALUMNO_ASIGNATURA_PERIODO ON ALUMNO_ASIGNATURA_PERIODO.COD_MATRICULA=MATRICULA_PERIODO.COD_MATRICULA
+                                WHERE PERSONA.CEDULA LIKE " . $aux);
 
-            </div>
+                                    while ($row = mysqli_fetch_assoc($result_sede)) { ?>
+                                        <tr>
+                                            <td><?php echo $row['COD_PERIODO_LECTIVO']; ?></td>
+                                            <td><?php echo $row['NOMBRE_NIVEL']; ?></td>
+                                            <td><?php echo $row['NIVEL']; ?></td>
+                                            <td><?php echo $ESTADO = $row['NOTA11']; ?></td>
+                                            <?php $NIVEL_SIG = $row['COD_NIVEL_EDUCATIVO']; ?>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php
+                        if ($NIVEL_SIG != null) {
+                            if ($ESTADO != null) {
+                                $NIVEL_SIG = $NIVEL_SIG + 1;
+                            }
+                            $result = $conn->query("SELECT * FROM NIVEL_EDUCATIVO WHERE COD_NIVEL_EDUCATIVO =" . $NIVEL_SIG);
+                            if (mysqli_num_rows($result) == 1) {
+                                $row = mysqli_fetch_array($result);
+                                $NOMBRE_NIVEL = $row['NOMBRE_NIVEL'];
+                                $NIVEL = $row['NIVEL'];
+                                $COD_NIVEL_EDUCATIVO = $row['COD_NIVEL_EDUCATIVO'];
+                            }
+                        }
+                        ?>
+                        <form class="user" action="matricularAlumno.php" method="POST">
+                            <label for=""> MATRICULA CORRESPONDIENTE</label>
+                            <div class="form-group">
+                                <label for="" <?php echo $accion2; ?>><?php echo 'Nombre Nivel: ' . $NOMBRE_NIVEL ?></label>
 
-            <div class="row">
-              <!-- ADD BOOKS FORM-->
-              <div class="col-md-4"></div>
-              <div class="col-md-4  ">
+                            </div>
+                            <div class="form-group">
+                                <label for="" <?php echo $accion2; ?>><?php echo 'Nivel: ' . $NIVEL ?></label>
+                            </div>
+                            <div class="form-group">
+                                <label hidden for="" <?php echo $accion2; ?>><?php echo 'Cédula: ' . $COD_NIVEL_EDUCATIVO ?></label>
+                            </div>
+                            <div class="form-group">
 
-                <form action="actualizarPersonal.php" method="POST">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="COD_NIVEL_EDUCATIVO" class="form-control form-control-user" value="<?php echo $COD_NIVEL_EDUCATIVO; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="ESTADO" class="form-control form-control-user" value="<?php echo $ESTADO; ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
+                            </div>
+                            <input type="submit" name="save_sede" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
+                        </form>
 
-
-                  <div class="form-group">
-                    <h5>Cédula:</h5>
-                    <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="1724155880" minlength="10" maxlength="10" value="<?php echo $CEDULA ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <h5>Apellido:</h5>
-                    <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="MEJÍA" value="<?php echo $APELLIDO ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <h5>Nombre:</h5>
-                    <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="JOSÉ LUIS" value="<?php echo $NOMBRE ?>" autofocus>
-                  </div>
-                  <div class="form-group">
-                    <h5>Dirección:</h5>
-                    <input type="text" name="DIRECCION" class="form-control form-control-user" placeholder="Carcelén Av. Del Maestro N76" value="<?php echo $DIRECCION ?>">
-                  </div>
-                  <div class="form-group">
-                    <h5>Teléfono:</h5>
-                    <input type="text" name="TELEFONO" class="form-control form-control-user" placeholder="0998719334" min="1" max="15" value="<?php echo $TELEFONO ?>">
-                  </div>
-                  <div class="form-group">
-                    <h5>Fecha de Nacimiento:</h5>
-                    <input type="date" name="FECHA_NACIMIENTO" class="form-control form-control-user" placeholder="05/12/1994" value="<?php echo $FECHA_NACIMIENTO ?>">
-                  </div>
-                  <div class="form-group">
-                    <h5>Género:</h5>
-                    <select name="GENERO" class="form-control form-control-user" id="TIPO" p-1 placeholder="MASCULINO">
-                      <optgroup label="GENERO">
-                        <option value="MAS">MASCULINO</option>
-                        <option value="FEM">FEMENINO</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <h5>Correo Personal:</h5>
-                    <input type="email" name="CORREO_PERSONAL" class="form-control form-control-user" placeholder="joseph.06@hotmail.es" value="<?php echo $CORREO_PERSONAL ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
-                  </div>
-                  <div class="form-group">
-                    <h5>Rol:</h5>
-                    <select name="COD_ROL" class="form-control form-control-user" id="TIPO" p-1>
-                      <option value="1">DIRECTIVO</option>
-                      <option value="2">ADMINISTRATIVO</option>
-                      <option value="3">DOCENTE</option>
-                    </select>
-                  </div>
-                  <div class="form-group" align="center">
-                    <input type="hidden" name="accion" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
-                    <input type="submit" name="save_Personal" class="btn btn-primary py-2 px-5" value="<?php echo $accion; ?>">
-                  </div>
-
-                </form>
-
-
-
-              </div>
-            </div>
-
-
-          </main>
+                    </main>
 
 
 
