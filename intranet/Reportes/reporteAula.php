@@ -9,7 +9,7 @@ $NOMBRE = '';
 $CAPACIDAD = '';
 $TIPO ='' ;
 $PISO='';
-$accion = "Agregar";
+$accion = "Generar";
 $COD_AULA = "";
 
 if (isset($_GET['COD_AULA'])) {
@@ -450,7 +450,7 @@ if (isset($_GET['COD_AULA'])) {
 
                     <!-- Page Heading -->
 
-                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE AULAS
+                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Reportes DE AULAS
                     </h5>
 
 
@@ -459,42 +459,7 @@ if (isset($_GET['COD_AULA'])) {
                         <div class="row ">
 
                         <div class="table">
-              <table class=" table table-striped w-auto" id="dtVerticalScrollExample">
-                <thead style="background-color: #00427c; color:white;">
-                                        <tr>
-                                            <th>COD_AULA</th>
-                                            <th>NOMBRE</th>
-                                            <th>SEDE</th>
-                                            <th>EDIFICIO</th>
-                                            <th>CAPACIDAD</th>
-                                            <th>TIPO</th>
-                                            <th>PISO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-                                        $result_AULA = $conn->query("SELECT COD_AULA, AULA.NOMBRE_AULA AS AN, SEDE.NOMBRE AS SN, EDIFICIO.NOMBRE AS EN, CAPACIDAD,TIPO, PISO FROM AULA INNER JOIN EDIFICIO ON AULA.COD_EDIFICIO=EDIFICIO.COD_EDIFICIO INNER JOIN SEDE ON SEDE.COD_SEDE=EDIFICIO.COD_SEDE");
-
-                                        while ($row = mysqli_fetch_assoc($result_AULA)) { ?>
-                                            <tr>
-                                                <td><?php echo $row['COD_AULA']; ?></td>
-                                                <td><?php echo $row['AN']; ?></td>
-                                                <td><?php echo $row['SN']; ?></td>
-                                                <td><?php echo $row['EN']; ?></td>
-                                                <td><?php echo $row['CAPACIDAD']; ?></td>
-                                                <td><?php echo $row['TIPO']; ?></td>
-                                                <td><?php echo $row['PISO']; ?></td>
-                                                <td>
-                                                    <a href="reporteInfraestrutura.php" class="btn btn-secondary">
-                                                        <i class="fas fa-marker"></i>
-                                                    </a>
-                                                  
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+          
                             </div>
 
                             <!-- ADD BOOKS FORM-->
@@ -536,29 +501,16 @@ if (isset($_GET['COD_AULA'])) {
                                         </script>
                                         <select name="COD_EDIFICIO" class="form-control form-control-user" id="productos" p-1></select>
                                         <!-- listar edificios-->
-                                        <div class="form-group">
-                                            <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="number" name="CAPACIDAD" class="form-control form-control-user" placeholder="CAPACIDAD" min="1" max="15" value="<?php echo $CAPACIDAD ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <select name="ESTADO" class="form-control form-control-user" id="TIPO" p-1>
-                                                <option value="GEN">ACT</option>
-                                                <option value="LAB">INT</option>
-                                            </select>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="number" name="PISO" class="form-control form-control-user" placeholder="PISO" min="1" max="15" value="<?php echo $PISO ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="hidden" name="COD_AULA" class="form-control form-control-user" value="<?php echo $COD_AULA; ?>">
-                                        </div>
+                                      
+                                       
+                                    
                                         <div class="form-group">
                                             <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
                                         </div>
-                                        <input type="submit" name="save_Aula" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
+
+                                        <div class="form-group">                                 <input type="button" class="btn btn-primary" onclick="location.href='./reporInfraestructura.php';" value="Generar" />
+               </div>
+       
                                     </form>
                                 </div>
                             </div>
