@@ -439,19 +439,19 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./report_student.html" class="nav-link">
+                    <a href="./Reportes/restdiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_teacher.html" class="nav-link">
+                    <a href="./Reportes/rdocentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_infraestructure.html" class="nav-link">
+                    <a href="./Reportes/reporteAulas.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>

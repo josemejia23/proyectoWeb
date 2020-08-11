@@ -434,7 +434,7 @@ session_start();
                     <main class="container p-4">
                         <div class="row ">
                         <div class="form-group">                                
-                                             <input type="button" class="btn btn-primary" href="#"  onclick="location.href='./repoDocentes.php';"  target="_blank" value="Generar reporte Aulas" />
+                                             <input type="button" class="btn btn-primary" href="#"  onclick="location.href='./repoDocentes.php';"  target="_blank" value="Generar reporte Docentes" />
                                       </div>
        
                     
