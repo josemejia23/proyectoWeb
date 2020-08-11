@@ -4,7 +4,6 @@ session_start();
 ?>
 
 <?php
-
 if (!isset($_SESSION['ADM'])) {
   header('Location: ../Login/login.php');
 }
@@ -701,6 +700,16 @@ if (isset($_GET['buscar'])) {
     <script src="../../js/pages/dashboard.js"></script>
     <!-- AdminLTE fo../r demo purposes -->
     <script src="../../js/demo.js"></script>
+
+    <script>
+          $(document).ready(function() {
+            $('#dtVerticalScrollExample').DataTable({
+              "scrollY": "200px",
+              "scrollCollapse": true,
+            });
+            $('.dataTables_length').addClass('bs-select');
+          });
+        </script>
 </body>
 
 </html>
