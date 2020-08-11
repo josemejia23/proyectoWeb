@@ -133,28 +133,48 @@ if (isset($_GET['buscar'])) {
                     </div>
                 </div>
 
-                <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        <li class="nav-header">GESTIÓN DEL SISTEMA</li>
-                        <li class="nav-item">
-                            <a href="calendar.html" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Horario
-                                    <span class="badge badge-info right"></span>
-                                </p>
-                            </a>
-                        </li>
+            <li class="nav-header">GESTIÓN DEL SISTEMA</li>
+            <li class="nav-item has-treeview">
+              <a href="calendar.html" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                <p>
+                  Calendario Académico
+                  <span class="badge badge-info right"></span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Añadir Calendario</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Actualizar Calendario</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo '<li class="nav-item has-treeview">
+              <a href="./Administrator/addPerson.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Gestión de Usuarios
@@ -169,21 +189,21 @@ if (isset($_GET['buscar'])) {
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./addPerson.php" class="nav-link">
+                  <a href="./GestionUsuarios/addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./addAlumn.php" class="nav-link">
+                  <a href="./GestionUsuarios/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Alumnos</p>
+                    <p>Alumno-Representante</p>
                   </a>
                 </li>
                
               </ul>
             </li>';
-                            echo '<li class="nav-item has-treeview">
+              echo '<li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -200,13 +220,13 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAspirant.php" class="nav-link">
+                <a href="./Aspirantes/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAlumn.php" class="nav-link">
+                <a href="./Aspirantes/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -217,12 +237,38 @@ if (isset($_GET['buscar'])) {
             
           </li>
           ';
-                        } ?>
+            } ?>
 
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Gestión Matrículas
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Estudiantes Nuevos </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Estudiantes Antiguos</p>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </li>
+                ';
+            } ?>
 
-
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
+            <?php //if($_SESSION["USER"]['COD_ROL']=='1') { 
+            /* echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -239,11 +285,12 @@ if (isset($_GET['buscar'])) {
                   </a>
                 </li>
               </ul>
-                </li>';
-                        } ?>
+                </li>'; */
+            //} 
+            ?>
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo ' <li class="nav-item has-treeview">
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -253,19 +300,19 @@ if (isset($_GET['buscar'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
+                    <a href="./Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
+                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
+                    <a href="./Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -273,60 +320,28 @@ if (isset($_GET['buscar'])) {
                 </ul>
               </li>
                 ';
-                        } ?>
-
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
-                    Infraestructura
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Sedes</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Edificios</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Aulas</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              ';
-                        } ?>
+            } ?>
 
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5') {
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5' || $_SESSION["USER"]['COD_ROL'] == '6' || $_SESSION["USER"]['COD_ROL'] == '2') {
 
 
-                            echo '<li class="nav-item has-treeview">
+              echo '<li class="nav-item has-treeview">
                 
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Información Educativa
+                    Gestión Escolar
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./attend.html" class="nav-link">
+                <a href="./GestionAcademica/horario.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Asignaturas</p>
+                  <p>Horario</p>
                 </a>
               </li>
                   <li class="nav-item">
@@ -342,7 +357,7 @@ if (isset($_GET['buscar'])) {
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./homework_info.html" class="nav-link">
+                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -351,11 +366,11 @@ if (isset($_GET['buscar'])) {
               </li>
   
                   ';
-                        } ?>
+            } ?>
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '3') {
-                            echo ' <li class="nav-item has-treeview">
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '3' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -380,13 +395,25 @@ if (isset($_GET['buscar'])) {
                   </li>
               
                   <li class="nav-item">
-                    <a href="./homework.html" class="nav-link">
+                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Registrar Tareas</p>
+                      <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./meets.html" class="nav-link">
+                  <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar Tareas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comunicados</p>
+                </a>
+              </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reuniones  </p>
                     </a>
@@ -398,14 +425,14 @@ if (isset($_GET['buscar'])) {
               </li>
   
                 ';
-                        } ?>
+            } ?>
 
 
 
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -417,7 +444,7 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./periodo.html" class="nav-link">
+                    <a href="./GestionInstitucion/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
@@ -430,19 +457,19 @@ if (isset($_GET['buscar'])) {
                   </li>
   
                   <li class="nav-item">
-                    <a href="./teacherAsignature.html" class="nav-link">
+                    <a href="./GestionUsuarios/asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Asignación de Docentes</p>
+                      <p> Docente-Asignatura</p>
                     </a>
                   </li>
                 </ul>
               </li>
                   ';
-                        } ?>
+            } ?>
 
 
-                        <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-                            echo '<li class="nav-item has-treeview">
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -454,19 +481,19 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./report_student.html" class="nav-link">
+                    <a href="./Reportes/restdiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_teacher.html" class="nav-link">
+                    <a href="./Reportes/rdocentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_infraestructure.html" class="nav-link">
+                    <a href="./Reportes/reporteAulas.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>
@@ -474,12 +501,11 @@ if (isset($_GET['buscar'])) {
                 </ul>
               </li>
   ';
-                        } ?>
+            } ?>
 
 
-                    </ul>
-                </nav>
-
+          </ul>
+        </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
