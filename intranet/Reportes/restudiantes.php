@@ -146,13 +146,13 @@ session_start();
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/addPerson.php" class="nav-link">
+                  <a href="../GestionUsuarios/addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./GestionUsuarios/gestAlumno.php" class="nav-link">
+                  <a href="../GestionUsuarios/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumno-Representante</p>
                   </a>
@@ -177,13 +177,13 @@ session_start();
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/addAspirant.php" class="nav-link">
+                <a href="../Aspirantes/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Aspirantes/aspirantsGrades.php" class="nav-link">
+                <a href="../Aspirantes/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -207,13 +207,13 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
+                    <a href="../GestionMatriculas/matricula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Nuevos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Estudiantes Antiguos</p>
                     </a>
@@ -257,19 +257,19 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./Infraestructura/addSede.php" class="nav-link">
+                    <a href="../Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./Infraestructura/addAula.php" class="nav-link">
+                    <a href="../Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -287,7 +287,7 @@ session_start();
 
               echo '<li class="nav-item has-treeview">
                 
-                <a href="./notes_info.html" class="nav-link">
+                <a href="../notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
                     Gestión Escolar
@@ -296,25 +296,25 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./GestionAcademica/horario.php" class="nav-link">
+                <a href="../GestionAcademica/horario.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Horario</p>
                 </a>
               </li>
                   <li class="nav-item">
-                    <a href="./attend.html" class="nav-link">
+                    <a href="../attend.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Asistencias</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./notes_info.html" class="nav-link">
+                    <a href="../notes_info.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Calificaciones</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -328,7 +328,7 @@ session_start();
 
             <?php if ($_SESSION["USER"]['COD_ROL'] == '3' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
-                <a href="./notes.html" class="nav-link">
+                <a href="../notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
                     Manager Académico
@@ -337,7 +337,7 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">
+                    <a href="../notes.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Calificaciones
                       </p>
@@ -345,26 +345,26 @@ session_start();
                   </li>
   
                   <li class="nav-item">
-                    <a href="./attend_ges.html" class="nav-link">
+                    <a href="../attend_ges.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Asistencias</p>
                     </a>
                   </li>
               
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Registrar Tareas</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunicados</p>
                 </a>
@@ -401,20 +401,20 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionInstitucion/periodo.php" class="nav-link">
+                    <a href="../GestionInstitucion/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./asignature.html" class="nav-link">
+                    <a href="../asignature.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Materias</p>
                     </a>
                   </li>
   
                   <li class="nav-item">
-                    <a href="./GestionUsuarios/asigDocenteMateria.php" class="nav-link">
+                    <a href="../GestionUsuarios/asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p> Docente-Asignatura</p>
                     </a>
@@ -438,7 +438,7 @@ session_start();
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./restdiantes.php" class="nav-link">
+                    <a href="./restudiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
@@ -450,7 +450,7 @@ session_start();
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./reporteAulas.php" class="nav-link">
+                    <a href="./reporteAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>

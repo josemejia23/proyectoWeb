@@ -140,7 +140,7 @@ if (isset($_GET['buscar'])) {
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
+  <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -227,13 +227,13 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="../addAspirant.php" class="nav-link">
+                <a href="./addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../aspirantsGrades.php" class="nav-link">
+                <a href="./aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -402,19 +402,19 @@ if (isset($_GET['buscar'])) {
                   </li>
               
                   <li class="nav-item">
-                    <a href="./GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Registrar Tareas</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="./GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunicados</p>
                 </a>
@@ -451,7 +451,7 @@ if (isset($_GET['buscar'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./GestionInstitucion/periodo.php" class="nav-link">
+                    <a href="../GestionInstitucion/periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
@@ -464,7 +464,7 @@ if (isset($_GET['buscar'])) {
                   </li>
   
                   <li class="nav-item">
-                    <a href="./GestionUsuarios/asigDocenteMateria.php" class="nav-link">
+                    <a href="../GestionUsuarios/asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p> Docente-Asignatura</p>
                     </a>
