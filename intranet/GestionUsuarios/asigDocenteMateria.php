@@ -121,21 +121,42 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                with font-awesome or any other icon font library -->
 
             <li class="nav-header">GESTIÓN DEL SISTEMA</li>
-            <li class="nav-item">
+            <li class="nav-item has-treeview">
               <a href="calendar.html" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
-                  Horario
+                  Calendario Académico
                   <span class="badge badge-info right"></span>
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Añadir Calendario</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="./Administrator/addPerson.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Actualizar Calendario</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="../Administrator/addPerson.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Gestión de Usuarios
@@ -150,15 +171,15 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                  <a href="./addPerson.php" class="nav-link">
+                  <a href="../GestionUsuarios/addPerson.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Personal</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./addAlumn.php" class="nav-link">
+                  <a href="../GestionUsuarios/gestAlumno.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Alumnos</p>
+                    <p>Alumno-Representante</p>
                   </a>
                 </li>
                
@@ -181,13 +202,13 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAspirant.php" class="nav-link">
+                <a href="../Aspirantes/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Administrator/addAlumn.php" class="nav-link">
+                <a href="../Aspirantes/aspirantsGrades.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notas Aspirantes</p>
                 </a>
@@ -200,10 +221,36 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
           ';
             } ?>
 
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '6') {
+              echo ' <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Gestión Matrículas
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../GestionMatriculas/matricula.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Estudiantes Nuevos </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Estudiantes Antiguos</p>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </li>
+                ';
+            } ?>
 
-
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-              echo '<li class="nav-item has-treeview">
+            <?php //if($_SESSION["USER"]['COD_ROL']=='1') { 
+            /* echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -220,10 +267,11 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                   </a>
                 </li>
               </ul>
-                </li>';
-            } ?>
+                </li>'; */
+            //} 
+            ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -234,19 +282,19 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
+                    <a href="../Infraestructura/addSede.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Sedes</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
+                    <a href="../Infraestructura/addEdificio.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Edificios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
+                    <a href="../Infraestructura/addAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Aulas</p>
                     </a>
@@ -256,42 +304,10 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                 ';
             } ?>
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
-              echo '<li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
-                    Infraestructura
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./sede.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Sedes</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./edifice.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Edificios</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./classroom.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Aulas</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              ';
-            } ?>
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '4' || $_SESSION["USER"]['COD_ROL'] == '5' || $_SESSION["USER"]['COD_ROL'] == '6' || $_SESSION["USER"]['COD_ROL'] == '2') {
 
 
               echo '<li class="nav-item has-treeview">
@@ -299,31 +315,31 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                 <a href="./notes_info.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Información Educativa
+                    Gestión Escolar
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="./attend.html" class="nav-link">
+                <a href="../GestionAcademica/horario.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Asignaturas</p>
+                  <p>Horario</p>
                 </a>
               </li>
                   <li class="nav-item">
-                    <a href="./attend.html" class="nav-link">
+                    <a href="../attend.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Asistencias</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./notes_info.html" class="nav-link">
+                    <a href="../notes_info.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Calificaciones</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./homework_info.html" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -335,7 +351,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '3') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '3' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo ' <li class="nav-item has-treeview">
                 <a href="./notes.html" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -346,7 +362,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">
+                    <a href="../notes.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Calificaciones
                       </p>
@@ -354,20 +370,32 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                   </li>
   
                   <li class="nav-item">
-                    <a href="./attend_ges.html" class="nav-link">
+                    <a href="../attend_ges.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Asistencias</p>
                     </a>
                   </li>
               
                   <li class="nav-item">
-                    <a href="./homework.html" class="nav-link">
+                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Registrar Tareas</p>
+                      <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./meets.html" class="nav-link">
+                  <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar Tareas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                <a href="../GestionAcademica/UserDocenteTareas.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comunicados</p>
+                </a>
+              </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reuniones  </p>
                     </a>
@@ -385,7 +413,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
 
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -398,7 +426,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./periodo.html" class="nav-link">
+                    <a href="./periodo.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Periodo</p>
                     </a>
@@ -411,9 +439,9 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                   </li>
   
                   <li class="nav-item">
-                    <a href="./teacherAsignature.html" class="nav-link">
+                    <a href="./asigDocenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Asignación de Docentes</p>
+                      <p> Docente-Asignatura</p>
                     </a>
                   </li>
                 </ul>
@@ -422,7 +450,7 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
             } ?>
 
 
-            <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
+            <?php if ($_SESSION["USER"]['COD_ROL'] == '1' || $_SESSION["USER"]['COD_ROL'] == '6') {
               echo '<li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -435,19 +463,19 @@ if (isset($_GET['COD_ASIG_PERIODO'])) {
                   <li class="nav-item">
                   </li>
                   <li class="nav-item">
-                    <a href="./report_student.html" class="nav-link">
+                    <a href="../Reportes/restudiantes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Alumnos </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_teacher.html" class="nav-link">
+                    <a href="../Reportes/rdocentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./report_infraestructure.html" class="nav-link">
+                    <a href="../Reportes/reporteAula.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Infraestructura</p>
                     </a>
