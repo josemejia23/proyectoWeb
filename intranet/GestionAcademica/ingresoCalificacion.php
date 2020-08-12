@@ -1,16 +1,39 @@
 <?php
 session_start();
 
-?>
-
-<?php
-include '../services/TareaServicios.php';
-$tarea = new TareaServicios();
-
-$cod_docente = $_SESSION['user']['COD_PERSONA'];
-
-$accion = "Aceptar";
-
+include '../services/DocenteService.php';
+$docenteService=new DocenteService();
+$result= $docenteService->findAllPeriodosAct();
+if(isset($_POST["agregar"])){
+    $registrado='false';
+    $error='false';
+    $message='false';
+    $alumno= $docenteService->findByPKCodAsigAlumno($_POST["codperiodo"], $_POST["selectNivel"], $_SESSION['DOC']['COD_PERSONA'], $_POST["selectAsignatura"], $_POST["selectParalelo"], $_POST["selectStudents"]);
+    if($alumno["NOTA5"]==null || $alumno["NOTA10"]==null){
+        if($_POST["selectQuimestre"]=='1'){
+            if($alumno["NOTA5"]==null){
+            $promedio=($_POST["nota1"]+$_POST["nota2"]+$_POST["nota3"]+$_POST["nota4"])/4;
+            $docenteService->updateNotasAlumnoPrimer($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
+            $registrado='false';
+            }else{
+                $registrado='true';
+            }
+        }else{
+            if($alumno["NOTA5"]!=null){
+                $promedio=($_POST["nota1"]+$_POST["nota2"]+$_POST["nota3"]+$_POST["nota4"])/4;
+                $promedioFinal=($alumno["NOTA5"]+$promedio)/2;
+                $docenteService->updateNotasAlumnoSegundo($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $promedioFinal, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
+                $error='false';
+            }else{
+                $error='true';
+            }
+        }
+    $message='false';
+    }else{
+        $message='true';
+    }
+    
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,7 +124,8 @@ $accion = "Aceptar";
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
+            <!-- Sidebar Menu -->
+    <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -475,6 +499,7 @@ $accion = "Aceptar";
           </ul>
         </nav>
 
+
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -526,155 +551,148 @@ $accion = "Aceptar";
                             </div>
                         </div>
 
-                        <section class="full-reset text-center" style="padding: 40px 0;">
-                            <div class="">
-                                <div class="">
-                                    <div class="">TAREA</div>
-                                    <form method="post" enctype="multipart/form-data">
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-8 col-sm-offset-1">
-
-                                                <div class="group-material col-md-6 mb-3">
-                                                    <span style="color: #E34724;">
-                                                        <h2>Seleccione el periodo lectivo</h2>
-                                                    </span>
-                                                    <select class="form-control" name="periodo">
-                                                        <option value="" disabled="" selected="">Selecciona el periodo</option>
-                                                        <?php
-                                                        $result2 = $tarea->periodo();
-                                                        foreach ($result2 as $opciones) :
+                        <h1 class="h3 mb-0 text-gray-800">Registro Calificaciones</h1> <br>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <div style="display: flex;align-items: center;justify-content: center;">
+                            <div class="abs-center">
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <form action="ingresoCalificacion.php" id="form" method="POST" class="user">
+                                        <div ALIGN=center>
+                                            <div class="container text-content-center">
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Periodo</label>
+                                                        <select class="form-control" id="codperiodo" name="codperiodo"
+                                                            required>
+                                                            <?php
+                                                            if($result->num_rows>0){
+                                                                while($row = $result->fetch_assoc()) {
                                                         ?>
-                                                            <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo $opciones['COD_PERIODO_LECTIVO'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
+                                                            <option value="<?php echo $row["COD_PERIODO_LECTIVO"]?>">
+                                                                <?php 
+                                                            $inicio=$row["FECHA_INICIO"];
+                                                            $inicio= date("M Y", strtotime($inicio));
+                                                            $fin=$row["FECHA_FIN"];
+                                                            $fin=date("M Y", strtotime($fin));
+                                                            echo "$inicio - $fin"?>
+                                                            </option>
+                                                            <?php }} ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
-
-                                                <div class="group-material col-md-6 mb-5">
-                                                    <span style="color: #E34724;">
-                                                        <h2>Seleccione la asignatura</h2>
-                                                    </span>
-                                                    <select class="form-control" name="asignatura">
-                                                        <option value="" disabled="" selected="">Selecciona la asignatura</option>
-                                                        <?php
-                                                        $result = $tarea->asignaturaParaleloNivel($cod_docente);
-                                                        foreach ($result as $opciones) :
-                                                        ?>
-                                                            <option value="<?php echo $opciones['COD_NIVEL_EDUCATIVO'] ?>|<?php echo $opciones['COD_ASIGNATURA'] ?>|<?php echo $opciones['COD_PARALELO'] ?>|<?php echo $opciones['NOMBRE'] ?>"><?php echo $opciones['NOMBRE'] ?>--<?php echo $opciones['NOMPARALELO'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Nivel educativo</label>
+                                                        <select class="form-control" id="selectNivel" name="selectNivel"
+                                                            required required style="width: 200px;">
+                                                            <option value="">Seleccione</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Asignaturas</label>
+                                                        <select class="form-control" id="selectAsignatura" required
+                                                            name="selectAsignatura" style="width: 200px;">
+                                                            <option value="">Seleccione</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Paralelo</label>
+                                                        <select class="form-control" id="selectParalelo"
+                                                            name="selectParalelo" required required
+                                                            style="width: 200px;">
+                                                            <option value="">Seleccione</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Quimestre</label>
+                                                        <select class="form-control" id="selectQuimestre" required
+                                                            name="selectQuimestre" style="width: 200px;">
+                                                            <option value="" selected hidden>Seleccione</option>
+                                                            <option value="1">Primer Quimestre</option>
+                                                            <option value="2">Segundo Quimestre</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Alumno</label>
+                                                        <select class="form-control" id="selectStudents"
+                                                            name="selectStudents" required style="width: 200px;">
+                                                            <option value="">Seleccione</option>
+                                                        </select>
+                                                    </div>
                                                 </div><br>
-                                                <!--<form action="../../form-result.php" method="post" enctype="multipart/form-data"
-                                    target="_blank">
-                                    <p>
-                                        Sube un archivo :<br></br>
-                                        
-                                    </p>
-                                    <p>
-                                        Nota Importante <br></br>(Adjuntar archivos con un peso máximo de 7 MB):
-                                        <br></br>
-                                        <input type="file" name="archivosubido">
-                                    </p>
-                                    <br></br>
-                                </form>-->
-                                                <p class="text-center">
-                                                    <input type="submit" name="accionTarea" value="<?php echo $accion ?>" class="btn btn-primary" style="margin-right: 20px;">
-                                                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                                </p>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Deberes</label>
+                                                        <input type="number" min="0" max="10" step="any"
+                                                            class="form-control" required value="" placeholder="10"
+                                                            id="nota1" name="nota1" style="width: 200px;">
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Talleres</label>
+                                                        <input type="number" min="0" max="10" step="any"
+                                                            class="form-control" required value="" placeholder="10"
+                                                            id="nota2" name="nota2" style="width: 200px;">
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Pruebas</label>
+                                                        <input type="number" min="0" max="10" step="any"
+                                                            class="form-control" required value="" placeholder="10"
+                                                            id="nota3" name="nota3" style="width: 200px;">
+                                                    </div>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="form-group">
+                                                        <label for="sel1">Examenes</label>
+                                                        <input type="number" min="0" max="10" step="any"
+                                                            class="form-control" required value="" placeholder="10"
+                                                            id="nota4" name="nota4" style="width: 200px;">
+                                                    </div>
+                                                </div><br>
+                                                <div class="form-group row py-4" style="justify-content: center;">
+                                                    <div class="col-sm-2 mb-3 mb-sm-0">
+                                                        <input class="btn btn-primary btn-user btn-block" name="agregar"
+                                                            type="submit" value="Registrar">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <a style="text-decoration:none;" href="./index.php"><input
+                                                                class="btn btn-secondary btn-user btn-block"
+                                                                type="button" value="Cancelar"></a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <?php
-                                if (isset($_POST['accionTarea']) && ($_POST['accionTarea'] == 'Aceptar')) {
-                                    $valores = $_POST['asignatura'];
-                                    $result_explode = array_map('trim', explode('|', $valores));
-                                    $cod_nivel_educativo = $result_explode[0];
-                                    $cod_asignatura = $result_explode[1];
-                                    $cod_paralelo = $result_explode[2];
-                                    $nombre_asignatura = $result_explode[3];
-                                    $cod_periodo_lectivo = $_POST['periodo'];
-                                ?>
-                                    <form action="" method="post" id="registroTareas" name="registroTareas" enctype="multipart/form-data">
-                                        <input type="hidden" name="cod_nivel_educativo" value="<?php echo $cod_nivel_educativo ?>">
-                                        <input type="hidden" name="cod_asignatura" value="<?php echo $cod_asignatura ?>">
-                                        <input type="hidden" name="cod_paralelo" value="<?php echo $cod_paralelo ?>">
-                                        <input type="hidden" name="cod_periodo_lectivo" value="<?php echo $cod_periodo_lectivo ?>">
-                                        <div class="title-flat-form title-flat-green">Nueva Tarea para la asignatura <?php echo $nombre_asignatura ?></div>
-                                        <h1 class="all-tittles">Título/Tema de la Tarea</h1>
-                                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                                            <input type="text" class="material-control tooltips-general" placeholder="Título de la tarea" required="" data-toggle="tooltip" data-placement="top" title="Escriba el título de la tarea a realizar" name="titulo_tarea">
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
-                                        </div><br><br><br><br>
-                                        <h1 class="all-tittles">Detalles de la Tarea</h1>
-                                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                                            <input type="text" class="material-control tooltips-general" placeholder="Detalles de la tarea" required="" data-toggle="tooltip" data-placement="top" title="Escriba los detalles de la tarea a realizar" name="detalle_tarea">
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
-                                        </div><br><br><br><br>
-                                        <h1 class="all-tittles">Fecha de Entrega</h1>
-                                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                                            <input type="datetime-local" class="material-control tooltips-general" placeholder="Fecha de Entrega" required="" data-toggle="tooltip" data-placement="top" title="Seleccione la fecha de entrega" name="fecha_entrega" onchange="obtenerFecha(this)">
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
-                                        </div><br><br><br><br>
-                                        <h1 class="all-tittles">Archivos</h1>
-                                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                                            <input type="file" class="material-control tooltips-general" placeholder="Archivos para la tarea" required="" data-toggle="tooltip" data-placement="top" title="Seleccione un archivo" name="archivo">
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
+
+                                        <div class=" container-fluid" style="width: auto; margin: auto auto">
+                                            <?php if(isset($_POST["agregar"])){if($message=='true'){ ?>
+                                            <p style="color:red;">* Alumno ya se encuentra
+                                                registrado</p>
+                                            <?php }if($error=='true'){?>
+                                            <p style="color:red;">* Primero debe registrar notas del
+                                                PRIMER
+                                                QUIMESTRE</p>
+                                            <?php }if($registrado=='true'){?>
+                                            <p style="color:red;">* Calificaciones del PRIMER
+                                                QUIMESTRE ya se
+                                                encuentran registradas</p>
+                                            <?php }}?>
                                         </div>
-                                        <input type="submit" name="accionTareas" value="Hecho" class="btn btn-primary" style="margin-right: 20px;">
                                     </form>
-                                <?php
-                                }
-                                ?>
-
-
-                                <?php
-                                if (isset($_POST['accionTareas']) && ($_POST['accionTareas'] == 'Hecho')) {
-                                    $archivoTarea = $_FILES['archivo']['name'];
-                                    $archivo = $_FILES['archivo']['tmp_name'];
-                                    $ruta = "../assets/files/" . $archivoTarea;
-                                    move_uploaded_file($archivo, $ruta);
-                                    $tarea->ingresarTarea(
-                                        $_POST['cod_nivel_educativo'],
-                                        $_POST['cod_asignatura'],
-                                        $_POST['cod_periodo_lectivo'],
-                                        $_POST['cod_paralelo'],
-                                        $cod_docente,
-                                        $_POST['titulo_tarea'],
-                                        $_POST['detalle_tarea'],
-                                        $_POST['fecha_entrega'],
-                                        $archivoTarea
-                                    );
-                                }
-                                ?>
-
-                            </div>
-                        </section>
-
-                        <div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title text-center all-tittles">ayuda del sistema</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore dignissimos qui molestias
-                                        ipsum officiis unde aliquid consequatur, accusamus delectus asperiores sunt. Quibusdam veniam
-                                        ipsa accusamus error. Animi mollitia corporis iusto.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="zmdi zmdi-thumb-up"></i> &nbsp; De acuerdo</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                   
 
