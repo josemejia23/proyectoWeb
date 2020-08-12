@@ -333,7 +333,7 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">
+                    <a href="./GestionAcademica/ingresoCalificacion.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registrar Calificaciones
                       </p>
