@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include '../services/DocenteService.php';
-$DocenteServicio=new DocenteService();
+include '../services/DoceService.php';
+$DocenteServicio=new DoceService();
 $result= $DocenteServicio->findAllPeriodosAct();
 if(isset($_POST["agregar"])){
     $registrado='false';
