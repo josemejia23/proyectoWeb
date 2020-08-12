@@ -3,37 +3,25 @@ session_start();
 
 ?>
 
-<?php include("db.php"); ?>
-?php include("db.php"); ?>
 <?php
-$NOMBRE = '';
-$DIRECCION = '';
-$TELEFONO = '';
-$CEDULA = '';
-$CORREO_PERSONAL = '';
-$APELLIDO = '';
-$NOMBRE_R = '';
-$DIRECCION_R = '';
-$TELEFONO_R = '';
-$CEDULA_R = '';
-$CORREO_PERSONAL_R = '';
-$APELLIDO_R = '';
-$accion = "Agregar";
-$COD_SEDE = "";
 
-if (isset($_GET['COD_SEDE'])) {
-  $result_sede = $conn->query("SELECT * FROM SEDE WHERE COD_SEDE=" . $_GET['COD_SEDE']);
-  if (mysqli_num_rows($result_sede) == 1) {
-    $row = mysqli_fetch_array($result_sede);
-    $NOMBRE = $row['NOMBRE'];
-    $DIRECCION = $row['DIRECCION'];
-    $TELEFONO = $row['TELEFONO'];
-    $CEDULA = $row['CODIGO_POSTAL'];
-    $COD_SEDE = $row['COD_SEDE'];
-    $accion = "Modificar";
-  }
-}
+    include '../services/MatriculaServicios.php';
+    $matricula = new MatriculaServicios();
+    $codigoPeriodo = "";
+    $cedula="";
+    $cod_persona="";
+    $fechaInicio="";
+    $fechaFin="";
+    $accion="Añadir";
+    $mensaje="Matricula Nuevo Estudiante";
+
+    if(isset($_POST['accionMatricula']))
+    {
+        $matricula->agregarMatricula($_POST['periodo'],$_POST['cod_persona'],$_POST['cod_nivel_educativo']);
+    }
+    
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -141,7 +129,6 @@ if (isset($_GET['COD_SEDE'])) {
 
 
 
-
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -165,7 +152,7 @@ if (isset($_GET['COD_SEDE'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./gestAlumno.php" class="nav-link">
+                  <a href="./addAlumn.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
@@ -190,7 +177,7 @@ if (isset($_GET['COD_SEDE'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./addAspirant.php" class="nav-link">
+                <a href="./Administrator/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
@@ -208,7 +195,6 @@ if (isset($_GET['COD_SEDE'])) {
           </li>
           ';
             } ?>
-
 
 
 
@@ -489,225 +475,192 @@ if (isset($_GET['COD_SEDE'])) {
 
           <!-- Page Heading -->
 
-          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE ALUMNOS
+          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE PERSONAL ADMINISTRATIVO
           </h5>
 
 
           <!-- Page Heading -->
-
-          <br><br><br><br>
-          <main class="container p-4">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <form class="user" action="actualizarAlumno.php" method="POST">
-                                    <div class="row">
-                                        <div class="col-sm-5 mb-3 mb-sm-0">
-                                            <div>
-                                                <h1 class="text-center">Alumno</h1>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="CEDULA" class="form-control form-control-user" placeholder="CEDULA" minlength="10" maxlength="10" value="<?php echo $CEDULA ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="APELLIDO" class="form-control form-control-user" placeholder="APELLIDO" value="<?php echo $APELLIDO ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="NOMBRE" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="DIRECCION" class="form-control form-control-user" placeholder="DIRECCION" value="<?php echo $DIRECCION ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="TELEFONO" class="form-control form-control-user" placeholder="TELEFONO" minlength="7" maxlength="12" value="<?php echo $TELEFONO ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="date" name="FECHA_NACIMIENTO" class="form-control form-control-user" placeholder="FECHA_NACIMIENTO" value="<?php echo $FECHA_NACIMIENTO ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <select name="GENERO" class="form-control" id="TIPO" >
-                                                    <optgroup label="GENERO">
-                                                        <option value="MAS">Masculino</option>
-                                                        <option value="FEM">Femenino</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" name="CORREO_PERSONAL" class="form-control form-control-user" placeholder="CORREO_PERSONAL" value="<?php echo $CORREO_PERSONAL ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <?php
-                                                $query = 'SELECT * FROM NIVEL_EDUCATIVO';
-                                                $result = $conn->query($query);
-                                                ?>
-                                                <select name="COD_NIVEL_EDUCATIVO" class="form-control" id="selector">
-                                                    <?php
-                                                    while ($row = $result->fetch_array()) {
-                                                    ?>
-                                                        <option value=" <?php echo $row['COD_NIVEL_EDUCATIVO'] ?> ">
-                                                            <?php echo $row['NIVEL'] . '-' . $row['NOMBRE_NIVEL'] ?>
-                                                        </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <?php
-                                                ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
-                                            </div>
-
-                                            <hr>
-                                        </div>
-                                        <div class="col-sm-2 mb-3 mb-sm-0"></div>
-
-                                        <div class="col-sm-5 mb-3 mb-sm-0">
-                                            <div>
-                                                <h1 class="text-center">Representante</h1>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="CEDULA_R" class="form-control form-control-user" placeholder="CEDULA" minlength="10" maxlength="10" value="<?php echo $CEDULA_R ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="APELLIDO_R" class="form-control form-control-user" placeholder="APELLIDO" value="<?php echo $APELLIDO_R ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="NOMBRE_R" class="form-control form-control-user" placeholder="NOMBRE" value="<?php echo $NOMBRE_R ?>" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="DIRECCION_R" class="form-control form-control-user" placeholder="DIRECCION" value="<?php echo $DIRECCION_R ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="TELEFONO_R" class="form-control form-control-user" placeholder="TELEFONO" minlength="7" maxlength="12" value="<?php echo $TELEFONO_R ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="date" name="FECHA_NACIMIENTO_R" class="form-control form-control-user" placeholder="FECHA_NACIMIENTO" value="<?php echo $FECHA_NACIMIENTO_R ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <select name="GENERO_R" class="form-control" id="TIPO_R" p-1 placeholder="GENERO">
-                                                    <optgroup label="GENERO">
-                                                        <option value="MAS">Masculino</option>
-                                                        <option value="FEM">Femenino</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" name="CORREO_PERSONAL_R" class="form-control form-control-user" placeholder="CORREO_PERSONAL" value="<?php echo $CORREO_PERSONAL_R ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" name="COD_PERSONA" class="form-control form-control-user" value="<?php echo $COD_PERSONA; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="hidden" name="accion" class="form-control form-control-user" value="<?php echo $accion; ?>">
-                                            </div>
-                                            <hr>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-sm-4 mb-3 mb-sm-0">
-                                            <input type="submit" name="save_Alumno" class="btn btn-success btn-block" value="<?php echo $accion; ?>">
-                                        </div>
-                                        <div class="col-sm-4 mb-3 mb-sm-0">
-                                            <a href="./gestPersonal.php" class="btn btn-secondary btn-user btn-block ">
-                                                Cancelar
-                                            </a>
-                                        </div>
-                                    </div>
-                                </form>
-                                </form>
-                            </div>
+          <div class="row container-flat-form">
+                <h1 style="text-align: center;"><?php echo $mensaje ?></h1><br><br>
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2" id="asignaturasForm">
+                    <form action="" method="post">
+                        <div class="group-material">
+                            <input type="text" class="material-control tooltips-general" placeholder="Cédula del Estudiante" required="" data-toggle="tooltip" data-placement="top" title="Escriba la cédula del estudiante" name="cedula_estudiante" value="">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Cédula del Estudiante Nuevo</label><br>
+                            <input type="submit" name="verificarEstudiante" value="Verificar" class="btn btn-primary" style="margin-right: 20px;">
                         </div>
-                    </main> 
+                    </form>
+                    <?php
+                    if (isset($_POST['verificarEstudiante'])) {
+                        $cedula = $_POST['cedula_estudiante'];
+                    }
+                    ?>
+                    <form name="matricula" id="matricula" method="post">
+                        <div class="table-responsive">
+                            <table id="tablaEdificios" class="table-striped table-bordered table-condensed" style="width: 100%;">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Dirección</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $result = $matricula->encontrarAlumno($cedula);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                            <tr>
+                                                <!--DATOS DE LA TABLA EDIFICIOS-->
+                                                <td><?php echo $row["NOMBRE"]; ?></td>
+                                                <td><?php echo $row["APELLIDO"]; ?></td>
+                                                <td><?php echo $row["DIRECCION"]; ?></td>
+                                                <input type="hidden" name="cod_persona" value="<?php echo $row['COD_PERSONA'] ?>">
+                                            </tr>
+                                        <?php   } ?>
 
+                                    <?php   } else {
+                                    ?>
+                                        <tr>
+                                            <td>La cédula no coincide con algún registro en la base</td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div><br>
+
+                        <div class="group-material">
+                            <span style="color: #E34724;">
+                                <h2>Seleccione el nivel educativo</h2>
+                            </span>
+                            <select class="form-control" name="cod_nivel_educativo">
+                                <option value="" disabled="" selected="">Selecciona el nivel</option>
+                                <?php
+                                $result2 = $matricula->nivelesEducativos();
+                                foreach ($result2 as $opciones) :
+                                ?>
+                                    <option value="<?php echo $opciones['COD_NIVEL_EDUCATIVO'] ?>"><?php echo $opciones['NOMBRE_NIVEL'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="group-material">
+                            <span style="color: #E34724;">
+                                <h2>Seleccione el periodo lectivo</h2>
+                            </span>
+                            <select class="form-control" name="periodo">
+                                <option value="" disabled="" selected="">Selecciona el periodo</option>
+                                <?php
+                                $result4 = $matricula->periodo();
+                                foreach ($result4 as $opciones) :
+                                ?>
+                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo $opciones['COD_PERIODO_LECTIVO'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+
+                        <p class="text-center">
+                            <input type="submit" name="accionMatricula" value="<?php echo $accion ?>" class="btn btn-primary" style="margin-right: 20px;">
+                            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                        </p>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+
+
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+
+            <!-- Main row -->
+
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
       </div>
 
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+
+        <div class="float-right d-none d-sm-inline-block">
+
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
     </div>
-  </div>
-  </main>
+    <!-- ./wrapper -->
 
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../../js/pages/dashboard.js"></script>
+    <!-- AdminLTE fo../r demo purposes -->
+    <script src="../../js/demo.js"></script>
 
-
-  </div>
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-
-
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-
-      <!-- Main row -->
-
-    </div><!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-  </div>
-
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-
-    <div class="float-right d-none d-sm-inline-block">
-
-    </div>
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-
-  <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../../plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="../../plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="../../plugins/moment/moment.min.js"></script>
-  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../../js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../../js/pages/dashboard.js"></script>
-  <!-- AdminLTE fo../r demo purposes -->
-  <script src="../../js/demo.js"></script>
+    <script>
+          $(document).ready(function() {
+            $('#dtVerticalScrollExample').DataTable({
+              "scrollY": "200px",
+              "scrollCollapse": true,
+            });
+            $('.dataTables_length').addClass('bs-select');
+          });
+        </script>
 </body>
 
 </html>
