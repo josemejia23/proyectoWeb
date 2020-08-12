@@ -208,17 +208,12 @@ session_start();
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./GestionMatriculas/matricula.php" class="nav-link">
+                    <a href="./GestionMatriculas/GestionMatriculaNueva.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Nuevos </p>
+                      <p>Estudiantes-Matricula</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="./Infraestructura/addEdificio.php" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Estudiantes Antiguos</p>
-                    </a>
-                  </li>
+                 
                   
                 </ul>
               </li>

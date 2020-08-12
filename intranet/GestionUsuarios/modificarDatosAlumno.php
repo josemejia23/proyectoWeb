@@ -3,13 +3,16 @@ session_start();
 
 ?>
 
+<?php
+
+?>
 <?php include("db.php"); ?>
 <?php
 $NOMBRE = '';
 $DIRECCION = '';
 $TELEFONO = '';
 $FECHA_NACIMIENTO = '';
-$accion = "Modificar";
+$accion = "Agregar";
 $COD_PERSONA = "";
 $CEDULA = "";
 $APELLIDO = "";
@@ -157,7 +160,6 @@ if (isset($_GET['buscar'])) {
 
 
 
-
             <?php if ($_SESSION["USER"]['COD_ROL'] == '1') {
               echo '<li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -181,7 +183,7 @@ if (isset($_GET['buscar'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./gestAlumno.php" class="nav-link">
+                  <a href="./addAlumn.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
@@ -206,7 +208,7 @@ if (isset($_GET['buscar'])) {
               <li class="nav-item">
               </li>
               <li class="nav-item">
-                <a href="./addAspirant.php" class="nav-link">
+                <a href="./Administrator/addAspirant.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gestionar Aspirantes</p>
                 </a>
@@ -224,7 +226,6 @@ if (isset($_GET['buscar'])) {
           </li>
           ';
             } ?>
-
 
 
 
@@ -505,13 +506,11 @@ if (isset($_GET['buscar'])) {
 
           <!-- Page Heading -->
 
-          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE ALUMNOS
+          <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE PERSONAL ADMINISTRATIVO
           </h5>
 
 
           <!-- Page Heading -->
-
-          <br><br><br><br>
           <main class="container p-4">
             <form action="modificarDatosAlumno.php" method="GET">
               <p>
@@ -520,7 +519,7 @@ if (isset($_GET['buscar'])) {
               </p>
             </form>
 
-            <div class="col-md_8 table-responsive " ">
+            <div class="col-md_8 table-responsive my-custom-scrollbar" ">
                   <table class=" table table-hover" id="dtVerticalScrollExample">
               <thead>
                 <tr>
@@ -541,7 +540,7 @@ if (isset($_GET['buscar'])) {
                 //table-wrapper-scroll-y my-custom-scrollbar-> agregar scroll a tabla
                 while ($row = mysqli_fetch_assoc($result_sede)) { ?>
                   <tr>
-                    <td><?php echo $row['COD_PERSONA']; ?></td>
+                    <td><?php echo 'UE' . $row['COD_PERSONA']; ?></td>
                     <td><?php echo $row['CEDULA']; ?></td>
                     <td><?php echo $row['APELLIDO']; ?></td>
                     <td><?php echo $row['NOMBRE']; ?></td>
@@ -604,94 +603,100 @@ if (isset($_GET['buscar'])) {
               </div>
             </div>
           </main>
+
+
+
+
+        </div>
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+
+
+                </ol>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+
+            <!-- Main row -->
+
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
       </div>
 
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+
+        <div class="float-right d-none d-sm-inline-block">
+
+        </div>
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
     </div>
-  </div>
-  </main>
+    <!-- ./wrapper -->
 
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../../plugins/moment/moment.min.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../../js/pages/dashboard.js"></script>
+    <!-- AdminLTE fo../r demo purposes -->
+    <script src="../../js/demo.js"></script>
 
-
-  </div>
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-
-
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-
-      <!-- Main row -->
-
-    </div><!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-  </div>
-
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-
-    <div class="float-right d-none d-sm-inline-block">
-
-    </div>
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-
-  <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../../plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="../../plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="../../plugins/moment/moment.min.js"></script>
-  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../../js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../../js/pages/dashboard.js"></script>
-  <!-- AdminLTE fo../r demo purposes -->
-  <script src="../../js/demo.js"></script>
+    <script>
+          $(document).ready(function() {
+            $('#dtVerticalScrollExample').DataTable({
+              "scrollY": "200px",
+              "scrollCollapse": true,
+            });
+            $('.dataTables_length').addClass('bs-select');
+          });
+        </script>
 </body>
 
 </html>
