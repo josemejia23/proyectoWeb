@@ -2,18 +2,18 @@
 session_start();
 
 include '../services/DocenteService.php';
-$docenteService=new DocenteService();
-$result= $docenteService->findAllPeriodosAct();
+$DocenteServicio=new DocenteService();
+$result= $DocenteServicio->findAllPeriodosAct();
 if(isset($_POST["agregar"])){
     $registrado='false';
     $error='false';
     $message='false';
-    $alumno= $docenteService->findByPKCodAsigAlumno($_POST["codperiodo"], $_POST["selectNivel"], $_SESSION['DOC']['COD_PERSONA'], $_POST["selectAsignatura"], $_POST["selectParalelo"], $_POST["selectStudents"]);
+    $alumno= $DocenteServicio->findByPKCodAsigAlumno($_POST["codperiodo"], $_POST["selectNivel"], $_SESSION['USER']['COD_PERSONA'], $_POST["selectAsignatura"], $_POST["selectParalelo"], $_POST["selectStudents"]);
     if($alumno["NOTA5"]==null || $alumno["NOTA10"]==null){
         if($_POST["selectQuimestre"]=='1'){
             if($alumno["NOTA5"]==null){
             $promedio=($_POST["nota1"]+$_POST["nota2"]+$_POST["nota3"]+$_POST["nota4"])/4;
-            $docenteService->updateNotasAlumnoPrimer($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
+            $DocenteServicio->updateNotasAlumnoPrimer($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
             $registrado='false';
             }else{
                 $registrado='true';
@@ -22,7 +22,7 @@ if(isset($_POST["agregar"])){
             if($alumno["NOTA5"]!=null){
                 $promedio=($_POST["nota1"]+$_POST["nota2"]+$_POST["nota3"]+$_POST["nota4"])/4;
                 $promedioFinal=($alumno["NOTA5"]+$promedio)/2;
-                $docenteService->updateNotasAlumnoSegundo($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $promedioFinal, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
+                $DocenteServicio->updateNotasAlumnoSegundo($_POST["nota1"],$_POST["nota2"], $_POST["nota3"],$_POST["nota4"], $promedio, $promedioFinal, $alumno["COD_ASIG_PERIODO"], $alumno["COD_ALUMNO"]);
                 $error='false';
             }else{
                 $error='true';
@@ -35,7 +35,7 @@ if(isset($_POST["agregar"])){
     
 }
 ?>
-<!DOCTYPE html>
+<!USERTYPE html>
 <html>
 
 <head>
@@ -349,7 +349,7 @@ if(isset($_POST["agregar"])){
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../GestionAcademica/UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="../GestionAcademica/UserUSERenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Tareas</p>
                     </a>
@@ -387,19 +387,19 @@ if(isset($_POST["agregar"])){
                   </li>
               
                   <li class="nav-item">
-                    <a href="./UserDocenteTareasReporte.php" class="nav-link">
+                    <a href="./UserUSERenteTareasReporte.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Verificar Tareas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href="./UserDocenteTareas.php" class="nav-link">
+                  <a href="./UserUSERenteTareas.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Registrar Tareas</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                <a href="./UserDocenteTareas.php" class="nav-link">
+                <a href="./UserUSERenteTareas.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunicados</p>
                 </a>
@@ -449,9 +449,9 @@ if(isset($_POST["agregar"])){
                   </li>
   
                   <li class="nav-item">
-                    <a href="../GestionUsuarios/asigDocenteMateria.php" class="nav-link">
+                    <a href="../GestionUsuarios/asigUSERenteMateria.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p> Docente-Asignatura</p>
+                      <p> USERente-Asignatura</p>
                     </a>
                   </li>
                 </ul>
@@ -479,7 +479,7 @@ if(isset($_POST["agregar"])){
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../Reportes/rdocentes.php" class="nav-link">
+                    <a href="../Reportes/rUSERentes.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Reportes de Profesores</p>
                     </a>
@@ -518,7 +518,7 @@ if(isset($_POST["agregar"])){
 
                     <!-- Page Heading -->
 
-                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">GESTIÓN DE PERSONAL ADMINISTRATIVO
+                    <h5 class="h3 mb-4 text-gray-800" style="color: #fd5f00; text-align:center; ">Registro Calificaciones
                     </h5>
 
 
@@ -528,7 +528,7 @@ if(isset($_POST["agregar"])){
                             <ul class="list-unstyled full-reset">
 
                                 <li style="color:#fff; cursor:default;">
-                                    <span class="all-tittles">Docente <?php echo $_SESSION['user']['NOMBRE_USUARIO']  ?></span>
+                                    <span class="all-tittles">USERente <?php echo $_SESSION['user']['NOMBRE_USUARIO']  ?></span>
                                 </li>
                                 <li class="tooltips-general exit-system-button" data-href="../../LogOut.php" data-placement="bottom" title="Salir del sistema">
                                     <i class="zmdi zmdi-power"></i>
@@ -551,7 +551,7 @@ if(isset($_POST["agregar"])){
                             </div>
                         </div>
 
-                        <h1 class="h3 mb-0 text-gray-800">Registro Calificaciones</h1> <br>
+                    
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <div style="display: flex;align-items: center;justify-content: center;">
@@ -609,6 +609,7 @@ if(isset($_POST["agregar"])){
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <hr>
                                                 <div class="btn-group">
                                                     <div class="form-group">
                                                         <label for="sel1">Quimestre</label>
@@ -629,6 +630,7 @@ if(isset($_POST["agregar"])){
                                                         </select>
                                                     </div>
                                                 </div><br>
+                                                <hr>
                                                 <div class="btn-group">
                                                     <div class="form-group">
                                                         <label for="sel1">Deberes</label>
@@ -781,7 +783,7 @@ if(isset($_POST["agregar"])){
         <script src="../../js/demo.js"></script>
 
         <script>
-            $(document).ready(function() {
+            $(USERument).ready(function() {
                 $('#dtVerticalScrollExample').DataTable({
                     "scrollY": "200px",
                     "scrollCollapse": true,
